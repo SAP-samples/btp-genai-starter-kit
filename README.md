@@ -8,6 +8,9 @@
 
 This repo wants to give users of the SAP Business Technology Platform (BTP) a quick way to learn how to use generative AI with BTP services.
 
+<img src="pictures/overview.png" alt="Architectural overview" width="600"/>
+
+
 ## Requirements
 
 - You have access to an SAP BTP global account or an existing SAP BTP sub account.
