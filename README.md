@@ -64,7 +64,7 @@ That python script does the following:
 
 ## Known Issues
 
-> ❗There is an existing [Issue](https://github.tools.sap/btp-ai/genai-starter-kit/issues/27) that makes AI Core API token invalid for about 1-2 hours after it was created. We implemented a retry mechanism, neverthe less, until the issue is resolved, running the `./run.sh` might result in the following error. 
+> ❗There is an existing issue that makes AI Core API token invalid for about 1-2 hours after it was created. We implemented a retry mechanism, nevertheless, until the issue is resolved, running the `./run.sh` might result in the following error. 
 As a temporary workaround, just re-run the `./run.sh` in 1-2 hours.
 ![Issue](./pictures/Issue.jpg)
 
