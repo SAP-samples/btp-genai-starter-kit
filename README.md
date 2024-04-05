@@ -62,6 +62,15 @@ That python script does the following:
 - It loads the content of the newly created `.env` file from step 1 into the environment variables of the session.
 - It calls the AI Core APIs to give you access to the models you have defined in the file [config/secrets/my_btp_ai_setup.tfvars](config/secrets/my_btp_ai_setup.tfvars) (through the variable `target_ai_core_model`).
 
+### Step 3: Run genAi examples
+
+> After the steps above, you are all set for your first genAI experiments on SAP BTP.
+
+You can proceed by switching to the folder [`scripts/step03_genai_examples`](scripts/step03_genai_examples).
+
+You will find in the [`scripts/step03`](scripts/step03) folder various example folders with respective instructions and sample code.
+
+
 ## Known Issues
 
 > ❗There is an existing issue that makes AI Core API token invalid for about 1-2 hours after it was created. We implemented a retry mechanism, nevertheless, until the issue is resolved, running the `./run.sh` might result in the following error. 
