@@ -3,22 +3,15 @@ variable "subaccount_id" {
   description = "The subaccount domain (has to be unique within the BTP region)."
 }
 
-variable "cli_server_url" {
-  type        = string
-  description = "The BTP CLI server URL."
-  default     = "https://cpcli.cf.sap.hana.ondemand.com"
-}
-
 variable "ai_core_plan_name" {
   type        = string
   description = "The name of the AI Core service plan."
-  default     = "sap-internal"
+  default     = "extended"
   validation {
     condition     = contains(["sap-internal", "extended"], var.ai_core_plan_name)
     error_message = "Valid values for ai_core_plan_name are: sap-internal, extended."
   }
 }
-
 
 variable "target_ai_core_model" {
   type        = list(any)
@@ -33,7 +26,6 @@ variable "target_ai_core_model" {
     error_message = "Please enter a valid entry for the target_ai_core_model of the AI Core service. Valid values are: gpt-35-turbo, gpt-35-turbo-16k, gpt-4, gpt-4-32k, text-embedding-ada-002, tiiuae--falcon-40b-instruct."
   }
 }
-
 
 variable "admins" {
   type        = list(string)
@@ -53,7 +45,6 @@ variable "switch_setup_ai_launchpad" {
   default     = false
 }
 
-
 # Define roles for a user of the SAP AI Launchpad
 variable "roles_ai_launchpad" {
   type        = list(string)
@@ -67,4 +58,3 @@ variable "roles_ai_launchpad" {
   ]
 
 }
-

@@ -15,16 +15,10 @@ variable "subaccount_name" {
   default     = "My SAP Build Apps subaccount."
 }
 
-variable "cli_server_url" {
-  type        = string
-  description = "The BTP CLI server URL."
-  default     = "https://cpcli.cf.sap.hana.ondemand.com"
-}
-
 variable "ai_core_plan_name" {
   type        = string
   description = "The name of the AI Core service plan."
-  default     = "sap-internal"
+  default     = "extended"
   validation {
     condition     = contains(["sap-internal", "extended"], var.ai_core_plan_name)
     error_message = "Valid values for ai_core_plan_name are: sap-internal, extended."

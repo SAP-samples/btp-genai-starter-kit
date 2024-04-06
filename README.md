@@ -21,7 +21,7 @@ This repo wants to give users of the SAP Business Technology Platform (BTP) a qu
 
   | Name | Service/ Application | Plan |
   | --- | --- | --- | 
-  | **AI Core** | `aicore` (service)| `sap-internal` |
+  | **AI Core** | `aicore` (service)| `extended` |
   | **AI Launchpad** (optional) | `ai-launchpad` (app subscription) | `standard` |
   | **HANA Cloud** | `hana-cloud` (service) | `hana` |
   | **HANA Cloud Tools** | `hana-cloud-tools` (app subscription) | `tools` |
@@ -65,7 +65,7 @@ That python script does the following:
 - It loads the content of the newly created `.env` file from step 1 into the environment variables of the session.
 - It calls the AI Core APIs to give you access to the models you have defined in the file [config/secrets/my_btp_ai_setup.tfvars](config/secrets/my_btp_ai_setup.tfvars) (through the variable `target_ai_core_model`).
 
-### Step 3: Run genAi examples
+### Step 3: Run GenAI examples
 
 > After the steps above, you are all set for your first genAI experiments on SAP BTP.
 
