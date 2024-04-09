@@ -15,3 +15,5 @@ __pycache__/
 *$py.class
 *.env
 *.code-workspace
+build
+*.egg-info

@@ -1,7 +1,9 @@
 FROM python:3.12.1
 
-ENV APPNAME=ai-sandbox
-ENV HOME_FOLDER=/workspaces/$APPNAME
+ARG WORKSPACE_FOLDER_NAME=default
+ENV WORKSPACE_FOLDER_NAME=$WORKSPACE_FOLDER_NAME
+
+ENV HOME_FOLDER=/workspaces/$WORKSPACE_FOLDER_NAME
 WORKDIR $HOME_FOLDER
 ENV TEMPFOLDER=/tmp/mytmp
 
@@ -21,5 +23,11 @@ RUN apt-get update && apt-get install -y gnupg software-properties-common jq\
 # Install all python packages
 RUN    pip install --upgrade pip \ 
     && pip install --no-cache-dir -r $TEMPFOLDER/requirements.txt
+
+#COPY ./scripts/package $TEMPFOLDER/scripts/package
+#RUN pip install -e $TEMPFOLDER/scripts/package
+
+COPY ./scripts/package $HOME_FOLDER/scripts/package
+RUN pip install -e $HOME_FOLDER/scripts/package
 
 CMD ["bash"]
