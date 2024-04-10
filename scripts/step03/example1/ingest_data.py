@@ -1,12 +1,12 @@
 from gen_ai_hub.proxy.core.proxy_clients import get_proxy_client
 from gen_ai_hub.proxy.langchain.openai import OpenAIEmbeddings
-from library.constants.folders import FOLDER_DOCS_RAG_SOURCES, FILE_ENV
+from library.constants.folders import FILE_ENV
 from library.constants.table_names import TABLE_NAME
 from langchain_community.vectorstores.hanavector import HanaDB
-from library.data.data_store import load_docs, split_docs_into_chunks
+from langchain_community.document_loaders import GitLoader
+from library.data.data_store import split_docs_into_chunks
 from library.data.hana_db import get_connection_to_hana_db
 from library.util.logging import initLogger
-from pathlib import Path
 from dotenv import load_dotenv
 import logging
 
@@ -20,10 +20,16 @@ def main():
 
     log.header("Load the documents into the HANA DB to get them vectorized")
 
-    # Load the documents
-    tf_docs_all = load_docs(
-        tf_source_path=Path(FOLDER_DOCS_RAG_SOURCES, "tf_provider_btp").resolve()
+    # Load the documents from a GitHub repository
+    loader = GitLoader(
+        clone_url="https://github.com/SAP/terraform-provider-btp",
+        repo_path="./gen/docs/",
+        file_filter=lambda file_path: file_path.endswith(".md"),
+        branch="main",
     )
+    log.info("Getting the documents from the GitHub repository ...")
+    tf_docs_all = loader.load()
+
     # Split the documents into chunks
     chunks = split_docs_into_chunks(documents=tf_docs_all)
 
@@ -57,14 +63,14 @@ def main():
     # -------------------------------------------------------------------------------------
     log.info("Validate the documents are loaded correctly")
     cur = connection_to_hana.cursor()
-    cur.execute(
-    f"SELECT * FROM {TABLE_NAME} LIMIT 1"
-    )
+    cur.execute(f"SELECT * FROM {TABLE_NAME} LIMIT 1")
 
     rows = cur.fetchall()
     print(rows[0])
     cur.close()
 
     log.success("Data ingestion completed.")
+
+
 if __name__ == "__main__":
     main()

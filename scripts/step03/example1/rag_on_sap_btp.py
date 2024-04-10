@@ -111,10 +111,13 @@ def main():
         print(result["answer"])  
           
         # Output the source document chunks used for the answer  
-        source_docs = result["source_documents"]  
+        source_docs = result["source_documents"]
+        print("================")
         log.info(f"Number of used source document chunks: {len(source_docs)}")  
-        for doc in source_docs:  
-            log.info(doc.page_content) 
+        for doc in source_docs:
+            print("-" * 80)
+            log.info(doc.page_content)
+            log.info(doc.metadata)
 
 if __name__ == "__main__":
     main()

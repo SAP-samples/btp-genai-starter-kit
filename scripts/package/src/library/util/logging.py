@@ -237,6 +237,7 @@ def initLogger():
     thisHandler.setLevel(LOGLEVEL)
     thisHandler.setFormatter(MyFormatterStream())
     logging.root.addHandler(thisHandler)
+    logging.getLogger("httpx").setLevel(logging.WARNING)
 
 
 sys.excepthook = log_exceptions
