@@ -24,10 +24,4 @@ RUN apt-get update && apt-get install -y gnupg software-properties-common jq\
 RUN    pip install --upgrade pip \ 
     && pip install --no-cache-dir -r $TEMPFOLDER/requirements.txt
 
-#COPY ./scripts/package $TEMPFOLDER/scripts/package
-#RUN pip install -e $TEMPFOLDER/scripts/package
-
-COPY ./scripts/package $HOME_FOLDER/scripts/package
-RUN pip install -e $HOME_FOLDER/scripts/package
-
 CMD ["bash"]

@@ -69,10 +69,9 @@ That python script does the following:
 
 > After the steps above, you are all set for your first genAI experiments on SAP BTP.
 
-You can proceed by switching to the folder [`scripts/step03`](scripts/step03).
+You can proceed by switching to the folder [`scripts/step03_explore_examples`](scripts/step03_explore_examples).
 
-You will find in the [`scripts/step03`](scripts/step03) folder various example folders with respective instructions and sample code.
-
+Here you will find [some examples](scripts/step03_explore_examples/README.md) with respective instructions and sample code.
 
 ## Known Issues
 

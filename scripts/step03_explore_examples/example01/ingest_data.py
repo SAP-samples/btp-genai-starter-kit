@@ -1,17 +1,20 @@
 from gen_ai_hub.proxy.core.proxy_clients import get_proxy_client
 from gen_ai_hub.proxy.langchain.openai import OpenAIEmbeddings
-from library.constants.folders import FILE_ENV
-from library.constants.table_names import TABLE_NAME
 from langchain_community.vectorstores.hanavector import HanaDB
 from langchain_community.document_loaders import GitLoader
+from library.constants.folders import FILE_ENV
+from library.constants.table_names import TABLE_NAME
 from library.data.data_store import split_docs_into_chunks
 from library.data.hana_db import get_connection_to_hana_db
 from library.util.logging import initLogger
+
+
 from dotenv import load_dotenv
 import logging
 
 log = logging.getLogger(__name__)
 initLogger()
+
 
 # This function loads the documents into the HANA DB to get them vectorized and validates the documents are loaded correctly
 def main():
@@ -63,10 +66,12 @@ def main():
     # -------------------------------------------------------------------------------------
     log.info("Validate the documents are loaded correctly")
     cur = connection_to_hana.cursor()
-    cur.execute(f"SELECT * FROM {TABLE_NAME} LIMIT 1")
+    cur.execute(f"SELECT VEC_TEXT, VEC_META, TO_NVARCHAR(VEC_VECTOR) FROM {TABLE_NAME} LIMIT 1")
 
     rows = cur.fetchall()
-    print(rows[0])
+    print(rows[0][0])  # The text
+    print(rows[0][1])  # The metadata
+    print(f"{rows[0][2][:100]}...")  # The vector (printing only first 100 characters as it is quite long)
     cur.close()
 
     log.success("Data ingestion completed.")
