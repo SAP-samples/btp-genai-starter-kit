@@ -6,7 +6,7 @@
 		// Linking to the Dockerfile that has all the BTP development tools
 		"dockerfile": "../config/Dockerfile",
 		"context": "../",
-		"args": { 
+		"args": {
 			"WORKSPACE_FOLDER_NAME": "${localWorkspaceFolderBasename}"
 		}
 	},
@@ -28,11 +28,12 @@
 				"[python]": {
 					"editor.formatOnSave": true,
 					"editor.codeActionsOnSave": {
-						"source.fixAll": true
+						"source.fixAll": "explicit"
 					}
 				},
 				"python.formatting.provider": "black"
 			}
 		}
-	}
+	},
+	"postCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}/scripts/step03_explore_examples/example01/gen/docs"
 }
