@@ -27,4 +27,4 @@ echo "--------------------------------------------------------------------------
 echo "Prepare the AI Core service"
 echo "--------------------------------------------------------------------------------"
 cd ..
-python step02_fetch_metadata.py
+python step02_fetch_metadata/step02_fetch_metadata.py

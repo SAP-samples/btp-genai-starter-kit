@@ -5,7 +5,10 @@
 	"build": {
 		// Linking to the Dockerfile that has all the BTP development tools
 		"dockerfile": "../config/Dockerfile",
-		"context": "../"
+		"context": "../",
+		"args": { 
+			"WORKSPACE_FOLDER_NAME": "${localWorkspaceFolderBasename}"
+		}
 	},
 	"customizations": {
 		"vscode": {

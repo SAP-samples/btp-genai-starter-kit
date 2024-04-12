@@ -1,7 +1,7 @@
 from pathlib import Path
 
 # Folders
-ROOT = Path(__file__, "..", "..", "..", "..").resolve()
+ROOT = Path(__file__, "..", "..", "..", "..", "..", "..").resolve()
 FOLDER_SECRETS = Path(ROOT, "config", "secrets")
 FOLDER_DOCS_RAG_SOURCES = Path(ROOT, "docs", "rag_sources")
 
