@@ -1,0 +1,22 @@
+# This repo is supposed to be run in a linux dev container.
+# Thus - even on windows - we want to avoid CRLF conversions on checkout for text files
+
+# default all text files to treat eol as LF only
+* text eol=lf
+
+# Always treat certain file types as binary (left untouched)
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.mov binary
+*.mp4 binary
+*.mp3 binary
+*.flv binary
+*.fla binary
+*.swf binary
+*.gz binary
+*.zip binary
+*.7z binary
+*.ttf binary
