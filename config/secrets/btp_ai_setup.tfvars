@@ -12,7 +12,7 @@ subaccount_name = "GenAI starter-kit experiments"
 admins  = ["jane.doe@test.com", "john.doe@test.com"]
 
 # If set to true, the script will create an app subdomain for the AI Launchpad
-switch_setup_ai_launchpad = true
+switch_setup_ai_launchpad = false
 
 # The model that the AI Core service should use
 target_ai_core_model = ["gpt-35-turbo", "text-embedding-ada-002"]
