@@ -77,7 +77,7 @@ Here you will find [some examples](scripts/step03_explore_examples/README.md) wi
 
 > ❗There is an existing issue that makes AI Core API token invalid for about 1-2 hours after it was created. We implemented a retry mechanism, nevertheless, until the issue is resolved, running the `./run.sh` might result in the following error. 
 As a temporary workaround, just re-run the `./run.sh` in 1-2 hours.
-![issue](./pictures/issue.jpg)
+![issue](./pictures/Issue.jpg)
 
 ## How to obtain support
 [Create an issue](https://github.com/SAP-samples/<repository-name>/issues) in this repository if you find a bug or have questions about the content.
