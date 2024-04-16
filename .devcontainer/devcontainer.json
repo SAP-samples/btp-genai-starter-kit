@@ -1,0 +1,39 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.166.1/containers/javascript-node
+{
+	"name": "GenAI starter kit",
+	"build": {
+		// Linking to the Dockerfile that has all the BTP development tools
+		"dockerfile": "../config/Dockerfile",
+		"context": "../",
+		"args": {
+			"WORKSPACE_FOLDER_NAME": "${localWorkspaceFolderBasename}"
+		}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-python.python",
+				"ms-python.vscode-pylance",
+				"charliermarsh.ruff",
+				"Github.copilot",
+				"hashicorp.terraform"
+			],
+			// Set *default* container specific settings.json values on container create.
+			"settings": {
+				"python.defaultInterpreterPath": "/usr/local/bin/python",
+				"python.linting.enabled": true,
+				"python.testing.unittestEnabled": false,
+				"python.testing.pytestEnabled": true,
+				"[python]": {
+					"editor.formatOnSave": true,
+					"editor.codeActionsOnSave": {
+						"source.fixAll": "explicit"
+					}
+				},
+				"python.formatting.provider": "black"
+			}
+		}
+	},
+	"postCreateCommand": "git config --global --add safe.directory ${containerWorkspaceFolder}/scripts/step03_explore_examples/example01/gen/docs"
+}
