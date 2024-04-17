@@ -1,5 +1,5 @@
 # Example: RAG on SAP BTP
-Ths example shows how to create a simple RAG application that uses provisioned SAP BTP Services.
+This example shows how to create a simple RAG application that uses provisioned SAP BTP services.
 
 ## 1. Data Ingestion
 We begin with data ingestion. This example uses LangChain to load sample documents that will be used for grounding the LLM responses. Document chunks and embedding vectors are then stored in SAP HANA Cloud Vector Engine using the Langchain Vector store adapter.
@@ -17,7 +17,7 @@ This table will contain 3 columns:
 - A column VEC_VECTOR, which contains the embeddings-vector of the Document’s text.
 
 ## 2. Retrieval Augmanted Generation
-Then we demonstrate *Retrieval Augmented Generation* with SAP HANA Cloud Vector Engine and SAP GenAI Hub.
+Then we demonstrate *Retrieval Augmented Generation* with SAP HANA Cloud vector engine and SAP GenAI Hub.
 We use LangChain `ConversationalRetrievalChain` to retrieve relevant documents and answer the question with the `gpt-35-turbo` model.
 
 You can proceed with running the script `rag_on_sap_btp.py`:

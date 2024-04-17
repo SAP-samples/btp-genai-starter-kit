@@ -1,8 +1,6 @@
 # SAP BTP genAI starter kit
 
-<!--- Register repository https://api.reuse.software/register, then add REUSE badge:
-[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/REPO-NAME)](https://api.reuse.software/info/github.com/SAP-samples/REPO-NAME)
--->
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/btp-genai-starter-kit)](https://api.reuse.software/info/github.com/SAP-samples/btp-genai-starter-kit)
 
 ## Description
 
