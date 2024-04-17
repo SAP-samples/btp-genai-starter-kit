@@ -1,6 +1,6 @@
 # SAP BTP genAI starter kit
 
-[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/REPO-NAME)](https://api.reuse.software/info/github.com/SAP-samples/REPO-NAME)
+[![REUSE status](https://api.reuse.software/badge/github.com/SAP-samples/btp-genai-starter-kit)](https://api.reuse.software/info/github.com/SAP-samples/btp-genai-starter-kit)
 
 ## Description
 
