@@ -198,8 +198,11 @@ def get_deployment_details(aiCoreMetadata: AiCoreMetadataDefinition, deploymenId
             return deploymentDetails
         else:
             log.warning(
-                f"Could not {message} (deployment not finished)! Re-trying in {TIME_RETRY_API_CALL} seconds..."
+                f"Could not {message} (deployment not finished - status: {response['status']})! \n"
+                + json.dumps(response["statusDetails"], indent=4)
+                + f"\n\nRe-trying in {TIME_RETRY_API_CALL} seconds..."
             )
+
             time.sleep(TIME_RETRY_API_CALL)
             timeNeeded += TIME_RETRY_API_CALL
 
