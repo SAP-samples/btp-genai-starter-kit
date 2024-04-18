@@ -56,7 +56,7 @@ python-dotenv==1.0.1
 python-iso639==2024.1.2
 python-magic==0.4.27
 PyYAML==6.0.1
-rapidfuzz==3.6.1
+rapidfuzz==3.8.1
 regex==2023.12.25
 requests==2.31.0
 setuptools==69.0.3
