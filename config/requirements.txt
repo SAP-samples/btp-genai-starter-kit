@@ -31,12 +31,7 @@ joblib==1.4.0
 jsonpatch==1.33
 jsonpath-python==1.0.6
 jsonpointer==2.4
-langchain-community==0.0.20
-langchain-core==0.1.22
-langchain-openai==0.0.5
-langchain==0.1.4
 langdetect==1.0.9
-langsmith==0.0.87
 load-dotenv==0.1.0
 lxml==5.1.0
 Markdown==3.5.2
