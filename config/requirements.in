@@ -1,7 +1,7 @@
-ai-api-client-sdk
-ai-core-sdk
+hdbcli
 generative-ai-hub-sdk
-pip-tools
+GitPython
+#pip-tools
 python-dateutil
 python-dotenv
 requests
