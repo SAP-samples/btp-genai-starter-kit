@@ -1,0 +1,7 @@
+hdbcli
+generative-ai-hub-sdk
+GitPython
+#pip-tools
+python-dateutil
+python-dotenv
+requests
