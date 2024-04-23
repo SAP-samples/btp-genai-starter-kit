@@ -14,7 +14,8 @@ log = logging.getLogger(__name__)
 
 @dataclass
 class AiCoreMetadata(AiCoreMetadataDefinition):
-    def __init__(self):
+    def __init__(self, show_http_debug: bool = False):
+        self.show_http_debug = show_http_debug
         self.authUrl = os.environ.get("AICORE_AUTH_URL")
         self.clientId = os.environ.get("AICORE_CLIENT_ID")
         self.clientSecret = os.environ.get("AICORE_CLIENT_SECRET")
@@ -52,6 +53,9 @@ def get_api_access_token(aiCoreMetadata: AiCoreMetadataDefinition) -> str:
         None,
         "retrieve access token from AI Core system",
     )
+    json_response = json.dumps(response, indent=2)
+    if aiCoreMetadata.show_http_debug:
+        log.check(f"API response from fetching access token:\n{json_response}")
 
     return response["access_token"]
 
@@ -76,6 +80,9 @@ def get_available_ai_models(aiCoreMetadata: AiCoreMetadataDefinition) -> str:
         None,
         "retrieve available AI models from AI Core system",
     )
+    json_response = json.dumps(response, indent=2)
+    if aiCoreMetadata.show_http_debug:
+        log.check(f"API response from available AI models:\n{json_response}")
 
     return response
 
@@ -127,6 +134,11 @@ def create_configuration(aiCoreMetadata: AiCoreMetadataDefinition) -> str:
                         json.dumps(data),
                         f"create configuration for AI Core model {targetAiCoreModel}",
                     )
+                    json_response = json.dumps(response, indent=2)
+                    if aiCoreMetadata.show_http_debug:
+                        log.check(
+                            f"API response from creating config for {targetAiCoreModel}:\n{json_response}"
+                        )
                     configuration = response
                     configurationIDs.append(configuration["id"])
 
@@ -162,6 +174,12 @@ def create_deployments(aiCoreMetadata: AiCoreMetadataDefinition) -> list:
             json.dumps(data),
             f"deploy AI Core model for configuration id {configurationId}",
         )
+        json_response = json.dumps(response, indent=2)
+        if aiCoreMetadata.show_http_debug:
+            log.check(
+                f"API response from deploying config id {configurationId}:\n{json_response}"
+            )
+
         deploymentIds.append(response["id"])
 
     for deploymenId in deploymentIds:
@@ -190,6 +208,11 @@ def get_deployment_details(aiCoreMetadata: AiCoreMetadataDefinition, deploymenId
     while timeNeeded < TIMEOUT_API_CALL:
         # Send the request to create the deployment
         response = call_api("GET", aiCoreLocation, headers, None, message)
+        json_response = json.dumps(response, indent=2)
+        if aiCoreMetadata.show_http_debug:
+            log.check(
+                f"API response from retrieveing deployment details for deployment id {deploymenId}:\n{json_response}"
+            )
 
         deploymentDetails = response
         deploymentUrl = deploymentDetails["deploymentUrl"]

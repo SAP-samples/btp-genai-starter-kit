@@ -79,9 +79,9 @@ variable "target_ai_core_model" {
   validation {
     condition = length([
       for o in var.target_ai_core_model : true
-      if contains(["gpt-35-turbo", "gpt-35-turbo-16k", "gpt-4", "gpt-4-32k", "text-embedding-ada-002", "tiiuae--falcon-40b-instruct"], o)
+      if contains(["gpt-35-turbo", "gpt-35-turbo-0125", "gpt-35-turbo-16k", "gpt-4", "gpt-4-32k", "text-embedding-ada-002", "gemini-1.0-pro", "text-bison", "chat-bison", "textembedding-gecko-multilingual", "textembedding-gecko", "tiiuae--falcon-40b-instruct"], o)
     ]) == length(var.target_ai_core_model)
-    error_message = "Please enter a valid entry for the target_ai_core_model of the AI Core service. Valid values are: gpt-35-turbo, gpt-35-turbo-16k, gpt-4, gpt-4-32k, text-embedding-ada-002, tiiuae--falcon-40b-instruct."
+    error_message = "Please enter a valid entry for the target_ai_core_model of the AI Core service. Valid values are: gpt-35-turbo, gpt-35-turbo-0125, gpt-35-turbo-16k, gpt-4, gpt-4-32k, text-embedding-ada-002, gemini-1.0-pro, text-bison, chat-bison, textembedding-gecko-multilingual, textembedding-gecko, tiiuae--falcon-40b-instruct."
   }
 }
 
