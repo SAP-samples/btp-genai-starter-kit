@@ -20,6 +20,7 @@ class AiCoreMetadata:
     availableModels: str
     configurationIds: list
     deployments: list
+    show_http_debug: bool = False
 
     def __getitem__(self, item):
         return getattr(self, item)
