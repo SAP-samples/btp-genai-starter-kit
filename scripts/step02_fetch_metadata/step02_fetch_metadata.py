@@ -17,7 +17,7 @@ initLogger()
 def main(arguments: list[str]):
     # Check if the user wants to see the HTTP debug information
     show_http_debug = False
-    if len(arguments) != 0:
+    if len(arguments) == 2:
         if arguments[1] == "http_debug":
             show_http_debug = True
 
