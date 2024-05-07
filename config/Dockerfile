@@ -20,8 +20,10 @@ RUN apt-get update && apt-get install -y gnupg software-properties-common jq\
     && echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | tee /etc/apt/sources.list.d/hashicorp.list \
     && apt-get update \
     && apt-get install terraform
+# xdg-utils is intalled to use the SSO option of the terraform provider for SAP BTP
 # Install all python packages
 RUN    pip install --upgrade pip \ 
     && pip install --no-cache-dir -r $TEMPFOLDER/requirements.txt
+RUN apt-get install -y xdg-utils
 
 CMD ["bash"]
