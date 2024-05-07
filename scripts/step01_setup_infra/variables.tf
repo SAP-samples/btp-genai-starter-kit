@@ -58,9 +58,9 @@ variable "hana_system_password" {
     error_message = "The hana_system_password must contain at least one upper case."
   }
 
-  # add validation to check if the password contains at least two lower case characters
+  # add validation to check if the password contains at least two lower case characters that can occur on arbitrary places in the string (not necessarily in a row)
   validation {
-    condition     = can(regex("[a-z]{2}", var.hana_system_password))
+    condition     = length(regexall("[a-z]", var.hana_system_password)) > 1
     error_message = "The hana_system_password must contain at least two lower case characters."
   }
 
