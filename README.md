@@ -43,6 +43,10 @@ This repo wants to give users of the SAP Business Technology Platform (BTP) a qu
 - In the terminal simply type `./run.sh` and enter your `BTP_PASSWORD` as well as the password for the `HANA DB` (you will be prompted accordingly).
   > Make sure that the password for the HANA DB matches the minimum requirements (length >= 8, 1+ upper case chars, 2+ lower case chars, 1+ digit)!
 
+> In case you want to authenticate via Single-Sign-On (SSO) you should set the enironment variable `BTP_ENABLE_SSO` to `true`. You do this by running the following comman within your dev container:
+`export BTP_ENABLE_SSO=true`
+
+
 The startet script will now setup the following things for you in your SAP BTP global account:
 
 - It creates a subaccount with the name configured in the `my_btp_ai_setup.tfvars` file (folder `config/secrets`).
