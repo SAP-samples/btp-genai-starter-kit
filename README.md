@@ -34,6 +34,7 @@ This repo wants to give users of the SAP Business Technology Platform (BTP) a qu
   >Be aware that opening the dev container can take a while! 
 - In the folder [`config/secrets`](config/secrets) rename the file `btp_ai_setup.tfvars` to `my_btp_ai_setup.tfvars`.
     - adapt the value for `globalaccount` for the subaccount to be created within. You find in the global account landing page ("Subdomain: .....").
+    - if you would like to use custom IDP, provide the value for `idp` e.g. `<your-ias-tenant>.accounts.ondemand.com`.
     - add your email address to the variable `admins`. This should be looking similar to this: `admins  = ["your.email@sap.com"]`.
     - save the file.
 - In the folder [`config/secrets`](config/secrets) rename the file `btp_credentials.tfvars` to `my_btp_credentials.tfvars`.
@@ -42,6 +43,10 @@ This repo wants to give users of the SAP Business Technology Platform (BTP) a qu
 - Within VS Code open a terminal session. 
 - In the terminal simply type `./run.sh` and enter your `BTP_PASSWORD` as well as the password for the `HANA DB` (you will be prompted accordingly).
   > Make sure that the password for the HANA DB matches the minimum requirements (length >= 8, 1+ upper case chars, 2+ lower case chars, 1+ digit)!
+
+> In case you want to authenticate via Single-Sign-On (SSO) you should set the enironment variable `BTP_ENABLE_SSO` to `true`. You do this by running the following command within your dev container:
+`export BTP_ENABLE_SSO=true`
+
 
 The startet script will now setup the following things for you in your SAP BTP global account:
 
