@@ -3,6 +3,11 @@ variable "globalaccount" {
   description = "The globalaccount subdomain where the sub account shall be created."
 }
 
+variable "idp" {
+  type        = string
+  description = "Custom IDP for the BTP account."
+}
+
 variable "switch_setup_ai_launchpad" {
   type        = bool
   description = "Switch to enable the setup of the AI Launchpad."

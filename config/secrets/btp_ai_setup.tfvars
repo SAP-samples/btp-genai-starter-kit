@@ -4,6 +4,9 @@
 # Your global account subdomain
 globalaccount = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 
+# Custom IDP for the BTP account
+idp = ""
+
 # Region for your subaccount
 region        = "us10"
 
