@@ -3,6 +3,12 @@ variable "globalaccount" {
   description = "The globalaccount subdomain where the sub account shall be created."
 }
 
+variable "cli_server_url" {
+  type        = string
+  description = "The URL of the BTP CLI server."
+  default = null
+}
+
 variable "idp" {
   type        = string
   description = "Custom IDP for the BTP account."

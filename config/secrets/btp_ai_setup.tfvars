@@ -4,6 +4,9 @@
 # Your global account subdomain
 globalaccount = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 
+# BTP CLI server URL. By defauilt, it is set to point to BTP CLI server on the Live BTP landscape. Only change this if you need to connect to a different BTP CLI server.
+#cli_server_url = "https://<your-btp-cli-server-url>"
+
 # Custom IDP for the BTP account. By defauilt, it is set to point to BTP CLI server on the Live BTP landscape. Only change this if you use custom IDP for SAP BTP platform users.
 #idp = "<your-trusted-idp-name>"
 
