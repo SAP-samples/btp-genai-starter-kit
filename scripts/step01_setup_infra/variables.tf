@@ -6,6 +6,7 @@ variable "globalaccount" {
 variable "idp" {
   type        = string
   description = "Custom IDP for the BTP account."
+  default = null
 }
 
 variable "switch_setup_ai_launchpad" {
@@ -98,7 +99,7 @@ variable "region" {
   # Checkout https://github.com/SAP-samples/btp-service-metadata/blob/main/v0/developer/aicore.json for the latest list of regions
   # supported by the AI Core service.
   validation {
-    condition     = contains(["ap10", "eu10", "eu11", "jp10", "us10"], var.region)
+    condition     = contains(["ap10", "eu10", "eu11", "jp10", "us10", "eu10-canary"], var.region)
     error_message = "Please enter a valid region for the sub account. Checkout https://github.com/SAP-samples/btp-service-metadata/blob/main/v0/developer/aicore.json for regions providing the AI Core service."
   }  
 }
