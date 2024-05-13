@@ -4,6 +4,9 @@
 # Your global account subdomain
 globalaccount = "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 
+# Custom IDP for the BTP account. By defauilt, it is set to point to BTP CLI server on the Live BTP landscape. Only change this if you use custom IDP for SAP BTP platform users.
+#idp = "<your-ias-tenant>.accounts.ondemand.com"
+
 # Region for your subaccount
 region        = "us10"
 

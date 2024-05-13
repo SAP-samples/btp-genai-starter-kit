@@ -34,6 +34,7 @@ This repo wants to give users of the SAP Business Technology Platform (BTP) a qu
   >Be aware that opening the dev container can take a while! 
 - In the folder [`config/secrets`](config/secrets) rename the file `btp_ai_setup.tfvars` to `my_btp_ai_setup.tfvars`.
     - adapt the value for `globalaccount` for the subaccount to be created within. You find in the global account landing page ("Subdomain: .....").
+    - if you would like to use custom IDP, provide the value for `idp` e.g. `<your-ias-tenant>.accounts.ondemand.com`.
     - add your email address to the variable `admins`. This should be looking similar to this: `admins  = ["your.email@sap.com"]`.
     - save the file.
 - In the folder [`config/secrets`](config/secrets) rename the file `btp_credentials.tfvars` to `my_btp_credentials.tfvars`.
