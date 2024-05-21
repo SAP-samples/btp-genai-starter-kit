@@ -139,7 +139,7 @@ pyyaml==6.0.1
     #   langchain-core
 regex==2024.4.28
     # via tiktoken
-requests==2.31.0
+requests==2.32.0
     # via
     #   -r requirements.in
     #   ai-api-client-sdk
