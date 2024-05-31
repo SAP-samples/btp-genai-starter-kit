@@ -3,9 +3,9 @@ name: Fetch data and update charts
 on:
   workflow_dispatch:
 
-  # Schedule to run every day at 23:55
+  # Schedule to run every Monday at 23:55
   schedule:
-    - cron: '55 23 * * *'
+    - cron: '55 23 * * 1'
 
   workflow_call:
 
