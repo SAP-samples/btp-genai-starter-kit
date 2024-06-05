@@ -10,7 +10,7 @@ on:
   workflow_call:
 
 env:  
-  TARGET_BRANCH_CHANGES: update-python-package$(date --rfc-3339=date)
+  TARGET_BRANCH_CHANGES: update-python-package-$(date --rfc-3339=date)
 
 jobs:
   setup_infrastructure:
@@ -46,12 +46,7 @@ jobs:
             git push origin ${{ env.TARGET_BRANCH_CHANGES }}
         
         - name: Create Pull Request
-          uses: devops-infra/action-pull-request@v0.5.5
-          with:
-            github_token: ${{ secrets.GITHUB_TOKEN }}
-            source_branch: ${{ env.TARGET_BRANCH_CHANGES }}
-            target_branch: main
-            title: Auto-update python packages
-            body: "**Automated pull request**"
-            label: enhancement
-            new_string: "** Automatic pull request** to update python packages"
+          run: |
+            curl -sS https://webi.sh/gh | sh
+            source ~/.config/envman/PATH.env
+            gh pr create --base main --head ${{ env.TARGET_BRANCH_CHANGES }} --title "Update python packages" --body "This PR updates the python packages in the project" --label "auto-updates"
