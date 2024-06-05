@@ -35,12 +35,13 @@ jobs:
 
         - name: Commit and push changes
           run: |
-            echo "TARGET_BRANCH=$(date --rfc-3339=date)" >> ${GITHUB_ENV}
+            TARGET_BRANCH=$(date --rfc-3339=date)"
             git add -A
             git config user.email "btpgenaibot@users.noreply.github.com"
             git config user.name "[genai bot] package updates"
             git diff --quiet && git diff --staged --quiet || git commit -m "[genai bot] update python packages"
             git push origin ${{ TARGET_BRANCH }}
+            echo "TARGET_BRANCH=$(TARGET_BRANCH)" >> ${GITHUB_ENV}
         
         - name: Create Pull Request
           uses: devops-infra/action-pull-request@v0.5.5
