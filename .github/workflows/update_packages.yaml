@@ -51,4 +51,4 @@ jobs:
           run: |
             curl -sS https://webi.sh/gh | sh
             source ~/.config/envman/PATH.env
-            gh pr create --base main --head ${{ env.TARGET_BRANCH_CHANGES }} --title "Auto-update python packages" --body "This PR updates the python packages in the project" 
+            gh pr create --base main --head ${{ env.TARGET_BRANCH_CHANGES }} --title "Auto-update python packages" --body "This PR updates the python packages in the project" --label "enhancement"
