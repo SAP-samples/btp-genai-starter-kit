@@ -9,9 +9,6 @@ on:
 
   workflow_call:
 
-env:
-    TARGET_BRANCH: main
-
 jobs:
   setup_infrastructure:
     name: Test
@@ -38,8 +35,20 @@ jobs:
 
         - name: Commit and push changes
           run: |
+            echo "TARGET_BRANCH=$(date --rfc-3339=date)" >> ${GITHUB_ENV}
             git add -A
             git config user.email "btpgenaibot@users.noreply.github.com"
             git config user.name "[genai bot] package updates"
             git diff --quiet && git diff --staged --quiet || git commit -m "[genai bot] update python packages"
-            git push origin ${{ env.TARGET_BRANCH }}
+            git push origin ${{ TARGET_BRANCH }}
+        
+        - name: Create Pull Request
+          uses: devops-infra/action-pull-request@v0.5.5
+          with:
+            github_token: ${{ secrets.GITHUB_TOKEN }}
+            source_branch: ${{ TARGET_BRANCH }}
+            target_branch: main
+            title: Auto-update python packages
+            body: "**Automated pull request**"
+            label: enhancement
+            new_string: "** Automatic pull request** to update python packages"
