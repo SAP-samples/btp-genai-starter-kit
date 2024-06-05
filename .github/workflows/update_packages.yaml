@@ -11,7 +11,7 @@ on:
 
 env:  
   TARGET_BRANCH_CHANGES: update-python-package-$(date --rfc-3339=date)
-
+  GH_TOKEN: ${{ github.token }}
 jobs:
   setup_infrastructure:
     name: Test
@@ -46,6 +46,8 @@ jobs:
             git push origin ${{ env.TARGET_BRANCH_CHANGES }}
         
         - name: Create Pull Request
+          env:  
+            GH_TOKEN: ${{ github.token }}        
           run: |
             curl -sS https://webi.sh/gh | sh
             source ~/.config/envman/PATH.env
