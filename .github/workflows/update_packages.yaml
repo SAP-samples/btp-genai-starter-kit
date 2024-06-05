@@ -9,9 +9,9 @@ on:
 
   workflow_call:
 
-env:
-    TARGET_BRANCH: main
-
+env:  
+  TARGET_BRANCH_CHANGES: update-python-package-$(date --rfc-3339=date)
+  GH_TOKEN: ${{ github.token }}
 jobs:
   setup_infrastructure:
     name: Test
@@ -42,4 +42,13 @@ jobs:
             git config user.email "btpgenaibot@users.noreply.github.com"
             git config user.name "[genai bot] package updates"
             git diff --quiet && git diff --staged --quiet || git commit -m "[genai bot] update python packages"
-            git push origin ${{ env.TARGET_BRANCH }}
+            git branch ${{ env.TARGET_BRANCH_CHANGES }}
+            git push origin ${{ env.TARGET_BRANCH_CHANGES }}
+        
+        - name: Create Pull Request
+          env:  
+            GH_TOKEN: ${{ github.token }}        
+          run: |
+            curl -sS https://webi.sh/gh | sh
+            source ~/.config/envman/PATH.env
+            gh pr create --base main --head ${{ env.TARGET_BRANCH_CHANGES }} --title "Auto-update python packages" --body "This PR updates the python packages in the project" --label "enhancement"
