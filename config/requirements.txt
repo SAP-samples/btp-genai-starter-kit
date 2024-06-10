@@ -35,7 +35,7 @@ click==8.1.7
     # via
     #   ai-core-sdk
     #   generative-ai-hub-sdk
-dataclasses-json==0.6.6
+dataclasses-json==0.6.7
     # via
     #   langchain
     #   langchain-community
@@ -69,7 +69,7 @@ idna==3.7
     #   yarl
 jsonpatch==1.33
     # via langchain-core
-jsonpointer==2.4
+jsonpointer==3.0.0
     # via jsonpatch
 langchain[openai]==0.1.20
     # via generative-ai-hub-sdk
@@ -85,12 +85,12 @@ langchain-openai==0.0.8
     # via generative-ai-hub-sdk
 langchain-text-splitters==0.0.2
     # via langchain
-langsmith==0.1.71
+langsmith==0.1.75
     # via
     #   langchain
     #   langchain-community
     #   langchain-core
-marshmallow==3.21.2
+marshmallow==3.21.3
     # via dataclasses-json
 multidict==6.0.5
     # via
@@ -102,12 +102,12 @@ numpy==1.26.4
     # via
     #   langchain
     #   langchain-community
-openai==1.31.0
+openai==1.33.0
     # via
     #   generative-ai-hub-sdk
     #   langchain
     #   langchain-openai
-orjson==3.10.3
+orjson==3.10.4
     # via langsmith
 overloading==0.5.0
     # via generative-ai-hub-sdk
@@ -169,7 +169,7 @@ tiktoken==0.5.2
     #   langchain-openai
 tqdm==4.66.4
     # via openai
-typing-extensions==4.12.1
+typing-extensions==4.12.2
     # via
     #   openai
     #   pydantic
