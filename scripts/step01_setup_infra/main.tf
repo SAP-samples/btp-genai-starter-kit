@@ -14,6 +14,14 @@ resource "btp_subaccount" "gen_ai" {
   region    = lower(var.region)
 }
 
+# Assign Role Collection(Subaccount Administrator) to users
+resource "btp_subaccount_role_collection_assignment" "subaccount_admin" {
+  for_each             = toset([for admin in var.admins: admin if admin != var.BTP_USERNAME])
+  subaccount_id        = btp_subaccount.gen_ai.id
+  role_collection_name = "Subaccount Administrator"
+  user_name            = each.value
+}
+
 # ------------------------------------------------------------------------------------------------------
 # Prepare & setup the SAP AI Core service (ensure your global account has the respective entitlements)
 # ------------------------------------------------------------------------------------------------------
