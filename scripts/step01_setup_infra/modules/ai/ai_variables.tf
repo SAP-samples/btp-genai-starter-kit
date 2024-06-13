@@ -21,9 +21,32 @@ variable "target_ai_core_model" {
   validation {
     condition = length([
       for o in var.target_ai_core_model : true
-      if contains(["gpt-35-turbo", "gpt-35-turbo-16k", "gpt-4", "gpt-4-32k", "text-embedding-ada-002", "tiiuae--falcon-40b-instruct"], o)
+      if contains([
+        "gpt-35-turbo",
+        "gpt-35-turbo-16k",
+        "gpt-4",
+        "gpt-4-32k",
+        "text-embedding-ada-002",
+        "text-embedding-3-small",
+        "text-embedding-3-large",
+        "tiiuae--falcon-40b-instruct",
+        "mistralai--mixtral-8x7b-instruct-v01",
+        "meta--llama3-70b-instruct",
+        "text-bison",
+        "chat-bison",
+        "textembedding-gecko",
+        "textembedding-gecko-multilingual",
+        "gemini-1.0-pro",
+        "anthropic--claude-3-sonnet",
+        "anthropic--claude-3-haiku",
+        "anthropic--claude-3-opus",
+        "amazon--titan-embed-text",
+        "amazon--titan-text-lite",
+        "amazon--titan-text-express",
+
+      ], o)
     ]) == length(var.target_ai_core_model)
-    error_message = "Please enter a valid entry for the target_ai_core_model of the AI Core service. Valid values are: gpt-35-turbo, gpt-35-turbo-16k, gpt-4, gpt-4-32k, text-embedding-ada-002, tiiuae--falcon-40b-instruct."
+    error_message = "Please enter a valid entry for the target_ai_core_model of the AI Core service. See https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/models-and-scenarios-in-generative-ai-hub (Model Name) for the list of supported values."  
   }
 }
 
