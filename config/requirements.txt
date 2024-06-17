@@ -105,13 +105,13 @@ jsonpatch==1.33
     # via langchain-core
 jsonpointer==3.0.0
     # via jsonpatch
-langchain==0.2.3
+langchain==0.2.5
     # via
     #   -r requirements.in
     #   langchain-community
-langchain-community==0.2.4
+langchain-community==0.2.5
     # via -r requirements.in
-langchain-core==0.2.5
+langchain-core==0.2.8
     # via
     #   langchain
     #   langchain-community
@@ -243,7 +243,7 @@ typing-inspect==0.9.0
     # via dataclasses-json
 uritemplate==4.1.1
     # via google-api-python-client
-urllib3==2.2.1
+urllib3==2.2.2
     # via requests
 yarl==1.9.4
     # via aiohttp
