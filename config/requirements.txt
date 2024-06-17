@@ -46,11 +46,11 @@ frozenlist==1.4.1
     #   aiohttp
     #   aiosignal
 generative-ai-hub-sdk==1.8.0
-    # via -r requirements.in
+    # via -r config/requirements.in
 gitdb==4.0.11
     # via gitpython
 gitpython==3.1.43
-    # via -r requirements.in
+    # via -r config/requirements.in
 google-ai-generativelanguage==0.6.4
     # via google-generativeai
 google-api-core[grpc]==2.19.0
@@ -86,7 +86,7 @@ grpcio-status==1.62.2
 h11==0.14.0
     # via httpcore
 hdbcli==2.20.23
-    # via -r requirements.in
+    # via -r config/requirements.in
 httpcore==1.0.5
     # via httpx
 httplib2==0.22.0
@@ -105,13 +105,13 @@ jsonpatch==1.33
     # via langchain-core
 jsonpointer==3.0.0
     # via jsonpatch
-langchain==0.2.3
+langchain==0.2.5
     # via
-    #   -r requirements.in
+    #   -r config/requirements.in
     #   langchain-community
 langchain-community==0.2.4
-    # via -r requirements.in
-langchain-core==0.2.5
+    # via -r config/requirements.in
+langchain-core==0.2.7
     # via
     #   langchain
     #   langchain-community
@@ -119,9 +119,9 @@ langchain-core==0.2.5
     #   langchain-openai
     #   langchain-text-splitters
 langchain-google-genai==1.0.6
-    # via -r requirements.in
+    # via -r config/requirements.in
 langchain-openai==0.1.8
-    # via -r requirements.in
+    # via -r config/requirements.in
 langchain-text-splitters==0.2.1
     # via langchain
 langsmith==0.1.77
@@ -186,9 +186,9 @@ pyhumps==3.8.0
 pyparsing==3.1.2
     # via httplib2
 python-dateutil==2.9.0.post0
-    # via -r requirements.in
+    # via -r config/requirements.in
 python-dotenv==1.0.1
-    # via -r requirements.in
+    # via -r config/requirements.in
 pyyaml==6.0.1
     # via
     #   langchain
@@ -198,7 +198,7 @@ regex==2024.5.15
     # via tiktoken
 requests==2.32.3
     # via
-    #   -r requirements.in
+    #   -r config/requirements.in
     #   ai-api-client-sdk
     #   google-api-core
     #   langchain
