@@ -6,7 +6,23 @@ import requests
 log = logging.getLogger(__name__)
 
 
-def fetch_and_encode(url: str) -> str:
+def load(src: str) -> str:
+    """
+    Helper function to load data from a given source.
+
+    Args:
+        src (str): The data source, which can be either a URL or a file path.
+
+    Returns:
+        str: The loaded data as a string.
+    """
+    if src.startswith("http://") or src.startswith("https://"):
+        return fetch_from_url(src)
+    else:
+        return load_from_fs(src)
+
+
+def fetch_from_url(url: str) -> str:
     """
     Fetches content from the given URL and returns it as a base64 encoded string.
 
@@ -27,32 +43,29 @@ def fetch_and_encode(url: str) -> str:
     return content_base64
 
 
-def load_images_from_dir(image_path: str) -> dict:
+def load_from_fs(image_path: str) -> dict:
     """
-    Load images from a directory and return a dictionary containing the image filenames as keys
-    and their base64-encoded contents as values.
+    Load an image file from the specified directory and return it as a base64-encoded string.
 
     Args:
-        image_path (str): The path to the directory containing the images.
+        image_path (str): The path to the image file.
 
     Returns:
-        dict: A dictionary containing the image filenames as keys and their base64-encoded contents as values.
+        dict: A dictionary containing the base64-encoded image string.
+
+    Raises:
+        ValueError: If the image file format is not supported.
+
     """
-    files = os.listdir(image_path)
+    if not image_path.lower().endswith((".png", ".jpg", ".jpeg", ".gif", ".webp")):
+        raise ValueError(
+            "Invalid image file format. Supported formats are .png, .jpg, .jpeg, .gif, and .webp"
+        )
 
-    image_files = [
-        file
-        for file in files
-        if file.lower().endswith((".png", ".jpg", ".jpeg", ".gif"))
-    ]
-
-    image_dict = {}
-
-    for file in image_files:
-        file_path = os.path.join(image_path, file)
-        with open(file_path, "rb") as f:
+    try:
+        with open(image_path, "rb") as f:
             image = f.read()
-        image_base64 = base64.b64encode(image).decode("utf-8")
-        image_dict[file] = image_base64
-
-    return image_dict
+        return base64.b64encode(image).decode("utf-8")
+    except Exception as e:
+        log.error("Error loading image from directory: %s", e)
+        raise
