@@ -108,16 +108,24 @@ def execute_few_shot_example():
 
 
 def main():
-    print("Please select an example to run:")
-    print("1: Measure Device Detection")
-    print("2: Visual Reasoning")
-    print("3: Read Tabular Data in Image")
-    print("4: Few Shot Promping with object detection")
-    print("5 or Press Ctrl+C: Exit\n")
+    print("\n")
+    print("Welcome to the AI Core Image Processing Examples")
+    print("================================================")
+
+    def print_header():
+        print("Please select an example to run:\n")
+        print("1: Measure Device Detection")
+        print("2: Visual Reasoning on Image")
+        print("3: Read Tabular Data in Image")
+        print("4: Few Shot Promping on Image")
+        print("5: Exit (or press Ctrl+C)")
+        print("\n")
 
     while True:
         try:
-            example = input("Which example would you like to run?").strip()
+            print_header()
+            example = input("Which example would you like to run? ").strip()
+
             if example == "1":
                 execute_measurement_device_example()
                 continue
