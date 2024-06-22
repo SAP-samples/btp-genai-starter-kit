@@ -134,10 +134,34 @@ def execute_few_shot_sample():
 
 
 def main():
-    # execute_object_detection_sample()
-    # execute_visual_reasoning_sample()
-    # execute_read_tabular_data_in_image_sample()
-    execute_few_shot_sample()
+    print("Please select an example to run:")
+    print("1: Object Detection")
+    print("2: Visual Reasoning")
+    print("3: Read Tabular Data in Image")
+    print("4: Few Shot Promping with object detection")
+    print("5 or Press Ctrl+C: Exit\n")
+
+    while True:
+        try:
+            example = input("Which example would you like to run?").strip()
+            if example == "1":
+                execute_object_detection_sample()
+                continue
+            elif example == "2":
+                execute_visual_reasoning_sample()
+                continue
+            elif example == "3":
+                execute_read_tabular_data_in_image_sample()
+                continue
+            elif example == "4":
+                execute_few_shot_sample()
+                continue
+            elif example == "5":
+                break
+            else:
+                print("Invalid input. Please enter a number between 1 and 5")
+        except ValueError:
+            print("Invalid input. Please enter a number between 1 and 5")
 
 
 if __name__ == "__main__":
