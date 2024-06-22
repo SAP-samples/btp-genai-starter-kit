@@ -1,6 +1,5 @@
 import logging
 import base64
-import os
 import requests
 
 log = logging.getLogger(__name__)
@@ -16,6 +15,9 @@ def load(src: str) -> str:
     Returns:
         str: The loaded data as a string.
     """
+
+    log.info("Loading data from source: %s", src)
+
     if src.startswith("http://") or src.startswith("https://"):
         return fetch_from_url(src)
     else:
