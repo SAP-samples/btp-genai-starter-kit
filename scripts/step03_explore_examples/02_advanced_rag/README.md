@@ -1,6 +1,22 @@
 # Advanced RAG examples
 
-Run the examples using `poetry run python main.py`
+## Installation
+1. Create virtual environment
+
+Poetry automatically creates and manages virtual environments. To create one for your project, run:
+
+```sh
+poetry install
+```
+
+This command creates a virtual environment and installs any dependencies specified in your pyproject.toml file.
+
+
+2. Run the script
+
+```sh
+poetry run python main.py
+```
 
 ## Data Ingestion
 
