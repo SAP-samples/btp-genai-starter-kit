@@ -9,6 +9,12 @@ variable "idp" {
   default     = null
 }
 
+variable "cli_server_url" {
+  type        = string
+  description = "The BTP CLI server URL."
+  default     = null    #points to default endpoint as maintained in BTP terraform provider
+}
+
 variable "switch_setup_ai_launchpad" {
   type        = bool
   description = "Switch to enable the setup of the AI Launchpad."
@@ -26,8 +32,8 @@ variable "ai_core_plan_name" {
   description = "The name of the AI Core service plan."
   default     = "extended"
   validation {
-    condition     = contains(["sap-internal", "extended"], var.ai_core_plan_name)
-    error_message = "Valid values for ai_core_plan_name are: sap-internal, extended."
+    condition     = contains(["extended"], var.ai_core_plan_name)
+    error_message = "Valid values for ai_core_plan_name are: extended."
   }
 }
 
@@ -92,7 +98,7 @@ variable "region" {
   # Checkout https://github.com/SAP-samples/btp-service-metadata/blob/main/v0/developer/aicore.json for the latest list of regions
   # supported by the AI Core service.
   validation {
-    condition     = contains(["ap10", "eu10", "eu11", "jp10", "us10"], var.region)
+    condition     = contains(["ap10", "eu10", "eu11", "eu20", "eu30", "jp10", "us10", "us21", "us30"], var.region)
     error_message = "Please enter a valid region for the sub account. Checkout https://github.com/SAP-samples/btp-service-metadata/blob/main/v0/developer/aicore.json for regions providing the AI Core service."
   }
 }
