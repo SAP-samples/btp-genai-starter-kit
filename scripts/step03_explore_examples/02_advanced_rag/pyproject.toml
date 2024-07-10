@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "advanced-rag"
+version = "0.1.0"
+description = "Demonstration of different Advanced RAG techniques"
+authors = ["SeriousSem"]
+readme = "README.md"
+packages = [{ include = "src" }, { include = "helpers" }]
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.13"
+generative-ai-hub-sdk = "^1.8.0"
+langchain = "^0.2.6"
+langchain-community = "^0.2.6"
+python-dotenv = "^1.0.1"
+utils = { path = "../utils", develop = true }
+langchain-google-genai = "^1.0.7"
+langchain-openai = "0.1.8"
+llama-index = "^0.10.52"
+llama-index-embeddings-langchain = "^0.1.2"
+gitpython = "^3.1.43"
+pymupdf = "^1.24.7"
+openai = "1.34.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -6,7 +6,7 @@ variable "globalaccount" {
 variable "idp" {
   type        = string
   description = "Custom IDP for the BTP account."
-  default = null
+  default     = null
 }
 
 variable "switch_setup_ai_launchpad" {
@@ -34,7 +34,7 @@ variable "ai_core_plan_name" {
 variable "BTP_USERNAME" {
   type        = string
   description = "Your BTP user name (email)."
-  
+
   validation {
     condition     = can(regex("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$", var.BTP_USERNAME))
     error_message = "Please enter a valid email address for the BTP_USERNAME."
@@ -81,15 +81,8 @@ variable "target_ai_core_model" {
   type        = list(any)
   description = "Defines the target AI core model to be used by the AI Core service"
   default     = ["gpt-35-turbo"]
-
-  validation {
-    condition = length([
-      for o in var.target_ai_core_model : true
-      if contains(["gpt-35-turbo", "gpt-35-turbo-0125", "gpt-35-turbo-16k", "gpt-4", "gpt-4-32k", "text-embedding-ada-002", "gemini-1.0-pro", "text-bison", "chat-bison", "textembedding-gecko-multilingual", "textembedding-gecko", "tiiuae--falcon-40b-instruct"], o)
-    ]) == length(var.target_ai_core_model)
-    error_message = "Please enter a valid entry for the target_ai_core_model of the AI Core service. Valid values are: gpt-35-turbo, gpt-35-turbo-0125, gpt-35-turbo-16k, gpt-4, gpt-4-32k, text-embedding-ada-002, gemini-1.0-pro, text-bison, chat-bison, textembedding-gecko-multilingual, textembedding-gecko, tiiuae--falcon-40b-instruct."
-  }
 }
+
 
 variable "region" {
   type        = string
@@ -101,7 +94,7 @@ variable "region" {
   validation {
     condition     = contains(["ap10", "eu10", "eu11", "jp10", "us10"], var.region)
     error_message = "Please enter a valid region for the sub account. Checkout https://github.com/SAP-samples/btp-service-metadata/blob/main/v0/developer/aicore.json for regions providing the AI Core service."
-  }  
+  }
 }
 
 variable "admins" {

@@ -5,7 +5,10 @@ langchain
 langchain_community
 langchain_google_genai
 langchain_openai
-#pip-tools
+llama-index
+sqlalchemy
+sqlalchemy-hana
+wikipedia
 python-dateutil
 python-dotenv
 requests

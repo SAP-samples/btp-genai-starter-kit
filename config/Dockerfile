@@ -21,9 +21,17 @@ RUN apt-get update && apt-get install -y gnupg software-properties-common jq\
     && apt-get update \
     && apt-get install terraform
 # Install all python packages
-RUN    pip install --upgrade pip \ 
+RUN pip install --upgrade pip \ 
     && pip install --no-cache-dir -r $TEMPFOLDER/requirements.txt
 # xdg-utils is intalled to use the SSO option of the terraform provider for SAP BTP
 RUN apt-get install -y xdg-utils
+
+RUN curl https://pyenv.run | bash \
+    && echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc \
+    && echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc \
+    && echo 'eval "$(pyenv init -)"' >> ~/.bashrc
+
+RUN curl -sSL https://install.python-poetry.org | python3 -
+ENV PATH="/root/.local/bin:$PATH"
 
 CMD ["bash"]

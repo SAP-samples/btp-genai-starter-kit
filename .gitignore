@@ -18,3 +18,8 @@ __pycache__/
 build
 *.egg-info
 gen
+*.DS_Store
+.venv/
+
+# VScode specific files
+.vscode/

@@ -18,7 +18,7 @@ admins  = ["jane.doe@test.com", "john.doe@test.com"]
 switch_setup_ai_launchpad = false
 
 # The model that the AI Core service should use
-target_ai_core_model = ["gpt-35-turbo", "text-embedding-ada-002"]
+target_ai_core_model = ["gpt-35-turbo", "text-embedding-ada-002", "anthropic--claude-3-sonnet", "gpt-4"]
 
 # Comment out the next line if you want to provide the password here instead of typing it in the console (not recommended for security reasons)
 # Make sure you respect the minimum requirements: len>=8 chars, 1+ upper case char, 2+ lower-case char, 1+ digit
