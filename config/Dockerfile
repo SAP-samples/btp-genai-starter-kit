@@ -29,7 +29,7 @@ RUN apk update && apk add curl unzip jq git bash build-base libffi-dev openssl-d
     && curl -O https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
     && unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/bin \
     && rm terraform_${TERRAFORM_VERSION}_linux_amd64.zip
-RUN apk add --no-cache xdg-utils
+RUN apk add xdg-utils
 
 # Install poetry
 RUN curl -sSL https://install.python-poetry.org | python3
