@@ -9,8 +9,9 @@ terraform {
 }
 
 provider "btp" {
-  globalaccount = var.globalaccount
-  password      = var.BTP_PASSWORD
-  username      = var.BTP_USERNAME
-  idp           = var.idp
+  globalaccount  = var.globalaccount
+  password       = var.BTP_PASSWORD
+  username       = var.BTP_USERNAME
+  idp            = var.idp
+  cli_server_url = var.cli_server_url
 }
