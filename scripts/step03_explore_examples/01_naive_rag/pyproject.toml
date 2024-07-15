@@ -7,15 +7,15 @@ readme = "README.md"
 packages = [{ include = "library" }]
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.13"
 generative-ai-hub-sdk = "^1.8.0"
+gitpython = "^3.1.43"
+python = ">=3.10,<3.13"
 langchain = "^0.2.6"
 langchain-community = "^0.2.6"
 python-dotenv = "^1.0.1"
 utils = { path = "../utils", develop = true }
 langchain-google-genai = "^1.0.7"
 langchain-openai = "^0.1.13"
-gitpython = "^3.1.43"
 
 [build-system]
 requires = ["poetry-core"]

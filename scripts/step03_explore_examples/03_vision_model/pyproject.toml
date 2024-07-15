@@ -4,11 +4,13 @@ version = "0.1.0"
 description = "Sample is showing how to use vision models via plain http calls"
 authors = ["romaniam"]
 readme = "README.md"
+packages = [{ include = "library" }]
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = ">=3.11,<3.13"
 pydantic = "^2.8.2"
 requests = "^2.32.3"
+utils = { path = "../utils", develop = true }
 
 
 [build-system]

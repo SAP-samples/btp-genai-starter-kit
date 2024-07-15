@@ -1,11 +1,12 @@
 import logging
-from modules.load import load
-from modules.process import (
+from library.load import load
+from library.process import (
     Image,
     TabularDataImageProcessor,
     VisualReasoningProcessor,
 )
-from modules.ai import AiCore
+from library.ai import AiCore
+from utils.env import init_env
 import os
 
 log = logging.getLogger(__name__)
@@ -54,6 +55,9 @@ def execute_tabular_data_example():
 
 
 def main():
+    # Load environment variables
+    init_env()
+
     print("\n")
     print("Welcome to the AI Core Image Processing Examples")
     print("================================================")
@@ -66,22 +70,19 @@ def main():
         print("\n")
 
     while True:
-        try:
             print_header()
-            example = input("Which example would you like to run? ").strip()
+            option = input("Which example would you like to run? ").strip()
 
-            if example == "1":
+            if option == "1":
                 execute_visual_reasoning_example()
                 continue
-            elif example == "2":
+            elif option == "2":
                 execute_tabular_data_example()
                 continue
-            elif example == "3":
+            elif option == "3":
                 break
             else:
                 print("Invalid input. Please enter a number between 1 and ")
-        except ValueError:
-            print("Invalid input. Please enter a number between 1 and 3")
 
 
 if __name__ == "__main__":
