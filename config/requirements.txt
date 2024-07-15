@@ -68,11 +68,11 @@ fsspec==2024.6.0
     #   llama-index-core
     #   llama-index-legacy
 generative-ai-hub-sdk==1.8.0
-    # via -r requirements.in
+    # via -r config/requirements.in
 gitdb==4.0.11
     # via gitpython
 gitpython==3.1.43
-    # via -r requirements.in
+    # via -r config/requirements.in
 google-ai-generativelanguage==0.6.6
     # via google-generativeai
 google-api-core[grpc]==2.19.1
@@ -109,7 +109,7 @@ h11==0.14.0
     # via httpcore
 hdbcli==2.21.28
     # via
-    #   -r requirements.in
+    #   -r config/requirements.in
     #   sqlalchemy-hana
 httpcore==1.0.5
     # via httpx
@@ -119,9 +119,9 @@ httplib2==0.22.0
     #   google-auth-httplib2
 httpx==0.27.0
     # via
+    #   llama-cloud
     #   llama-index-core
     #   llama-index-legacy
-    #   llamaindex-py-client
     #   openai
 idna==3.7
     # via
@@ -137,10 +137,10 @@ jsonpointer==3.0.0
     # via jsonpatch
 langchain==0.2.6
     # via
-    #   -r requirements.in
+    #   -r config/requirements.in
     #   langchain-community
 langchain-community==0.2.6
-    # via -r requirements.in
+    # via -r config/requirements.in
 langchain-core==0.2.11
     # via
     #   langchain
@@ -149,9 +149,9 @@ langchain-core==0.2.11
     #   langchain-openai
     #   langchain-text-splitters
 langchain-google-genai==1.0.7
-    # via -r requirements.in
+    # via -r config/requirements.in
 langchain-openai==0.1.14
-    # via -r requirements.in
+    # via -r config/requirements.in
 langchain-text-splitters==0.2.2
     # via langchain
 langsmith==0.1.84
@@ -159,15 +159,17 @@ langsmith==0.1.84
     #   langchain
     #   langchain-community
     #   langchain-core
-llama-index==0.10.47
-    # via -r requirements.in
+llama-cloud==0.0.9
+    # via llama-index-indices-managed-llama-cloud
+llama-index==0.10.55
+    # via -r config/requirements.in
 llama-index-agent-openai==0.2.7
     # via
     #   llama-index
     #   llama-index-program-openai
 llama-index-cli==0.1.12
     # via llama-index
-llama-index-core==0.10.47
+llama-index-core==0.10.55
     # via
     #   llama-index
     #   llama-index-agent-openai
@@ -185,7 +187,7 @@ llama-index-embeddings-openai==0.1.10
     # via
     #   llama-index
     #   llama-index-cli
-llama-index-indices-managed-llama-cloud==0.1.6
+llama-index-indices-managed-llama-cloud==0.2.5
     # via llama-index
 llama-index-legacy==0.9.48
     # via llama-index
@@ -211,10 +213,6 @@ llama-index-readers-llama-parse==0.1.4
     # via llama-index
 llama-parse==0.4.4
     # via llama-index-readers-llama-parse
-llamaindex-py-client==0.1.19
-    # via
-    #   llama-index-core
-    #   llama-index-indices-managed-llama-cloud
 marshmallow==3.21.3
     # via dataclasses-json
 multidict==6.0.5
@@ -288,7 +286,7 @@ pydantic==2.8.2
     #   langchain
     #   langchain-core
     #   langsmith
-    #   llamaindex-py-client
+    #   llama-cloud
     #   openai
 pydantic-core==2.20.1
     # via pydantic
@@ -300,10 +298,10 @@ pypdf==4.2.0
     # via llama-index-readers-file
 python-dateutil==2.9.0.post0
     # via
-    #   -r requirements.in
+    #   -r config/requirements.in
     #   pandas
 python-dotenv==1.0.1
-    # via -r requirements.in
+    # via -r config/requirements.in
 pytz==2024.1
     # via pandas
 pyyaml==6.0.1
@@ -318,7 +316,7 @@ regex==2024.5.15
     #   tiktoken
 requests==2.32.3
     # via
-    #   -r requirements.in
+    #   -r config/requirements.in
     #   ai-api-client-sdk
     #   google-api-core
     #   langchain
@@ -343,14 +341,14 @@ soupsieve==2.5
     # via beautifulsoup4
 sqlalchemy[asyncio]==2.0.31
     # via
-    #   -r requirements.in
+    #   -r config/requirements.in
     #   langchain
     #   langchain-community
     #   llama-index-core
     #   llama-index-legacy
     #   sqlalchemy-hana
 sqlalchemy-hana==2.1.0
-    # via -r requirements.in
+    # via -r config/requirements.in
 striprtf==0.0.26
     # via llama-index-readers-file
 tenacity==8.5.0
@@ -393,7 +391,7 @@ uritemplate==4.1.1
 urllib3==2.2.2
     # via requests
 wikipedia==1.4.0
-    # via -r requirements.in
+    # via -r config/requirements.in
 wrapt==1.16.0
     # via
     #   deprecated
