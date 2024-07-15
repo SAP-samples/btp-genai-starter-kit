@@ -6,9 +6,9 @@
 #
 aenum==3.1.15
     # via ai-api-client-sdk
-ai-api-client-sdk==2.1.2
+ai-api-client-sdk==2.1.4
     # via ai-core-sdk
-ai-core-sdk==2.3.5
+ai-core-sdk==2.3.11
     # via generative-ai-hub-sdk
 aiohttp==3.9.5
     # via
@@ -67,12 +67,12 @@ fsspec==2024.6.0
     # via
     #   llama-index-core
     #   llama-index-legacy
-generative-ai-hub-sdk==1.8.0
-    # via -r requirements.in
+generative-ai-hub-sdk==1.11.1
+    # via -r config/requirements.in
 gitdb==4.0.11
     # via gitpython
 gitpython==3.1.43
-    # via -r requirements.in
+    # via -r config/requirements.in
 google-ai-generativelanguage==0.6.6
     # via google-generativeai
 google-api-core[grpc]==2.19.1
@@ -109,7 +109,7 @@ h11==0.14.0
     # via httpcore
 hdbcli==2.21.28
     # via
-    #   -r requirements.in
+    #   -r config/requirements.in
     #   sqlalchemy-hana
 httpcore==1.0.5
     # via httpx
@@ -137,10 +137,10 @@ jsonpointer==3.0.0
     # via jsonpatch
 langchain==0.2.6
     # via
-    #   -r requirements.in
+    #   -r config/requirements.in
     #   langchain-community
 langchain-community==0.2.6
-    # via -r requirements.in
+    # via -r config/requirements.in
 langchain-core==0.2.11
     # via
     #   langchain
@@ -149,9 +149,9 @@ langchain-core==0.2.11
     #   langchain-openai
     #   langchain-text-splitters
 langchain-google-genai==1.0.7
-    # via -r requirements.in
+    # via -r config/requirements.in
 langchain-openai==0.1.14
-    # via -r requirements.in
+    # via -r config/requirements.in
 langchain-text-splitters==0.2.2
     # via langchain
 langsmith==0.1.84
@@ -160,7 +160,7 @@ langsmith==0.1.84
     #   langchain-community
     #   langchain-core
 llama-index==0.10.47
-    # via -r requirements.in
+    # via -r config/requirements.in
 llama-index-agent-openai==0.2.7
     # via
     #   llama-index
@@ -300,10 +300,10 @@ pypdf==4.2.0
     # via llama-index-readers-file
 python-dateutil==2.9.0.post0
     # via
-    #   -r requirements.in
+    #   -r config/requirements.in
     #   pandas
 python-dotenv==1.0.1
-    # via -r requirements.in
+    # via -r config/requirements.in
 pytz==2024.1
     # via pandas
 pyyaml==6.0.1
@@ -318,7 +318,7 @@ regex==2024.5.15
     #   tiktoken
 requests==2.32.3
     # via
-    #   -r requirements.in
+    #   -r config/requirements.in
     #   ai-api-client-sdk
     #   google-api-core
     #   langchain
@@ -343,14 +343,14 @@ soupsieve==2.5
     # via beautifulsoup4
 sqlalchemy[asyncio]==2.0.31
     # via
-    #   -r requirements.in
+    #   -r config/requirements.in
     #   langchain
     #   langchain-community
     #   llama-index-core
     #   llama-index-legacy
     #   sqlalchemy-hana
 sqlalchemy-hana==2.1.0
-    # via -r requirements.in
+    # via -r config/requirements.in
 striprtf==0.0.26
     # via llama-index-readers-file
 tenacity==8.5.0
@@ -393,7 +393,7 @@ uritemplate==4.1.1
 urllib3==2.2.2
     # via requests
 wikipedia==1.4.0
-    # via -r requirements.in
+    # via -r config/requirements.in
 wrapt==1.16.0
     # via
     #   deprecated
