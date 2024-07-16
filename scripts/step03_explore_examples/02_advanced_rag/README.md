@@ -20,12 +20,17 @@ poetry run python main.py
 
 ## Data Ingestion
 
-The examples are using LangChain to load sample documents that will be used for grounding the LLM responses. We download two PDF files that contain transcripts for Episode 64 and Episode 65 of SAP Podcast. After that, we will create document chunks and store embedding vectors in SAP HANA Cloud Vector Engine using the Langchain Vector store adapter. Along with the document chunks, we will store the metadata for each document chunk in the SAP HANA Cloud database. The metadata, such as podcast episode title, will be used to filter the documents during the retrieval process. We repeat the same step for SAP BTP Documentation which is used by other examples.
+The examples are using LangChain to load sample documents that will be used for grounding the LLM responses.  
+We download two PDF files that contain transcripts for Episode 64 and Episode 65 of SAP Podcast. After that, we will create document chunks and store embedding vectors in SAP HANA Cloud Vector Engine using the Langchain Vector store adapter. Along with the document chunks, we will store the metadata for each document chunk in the SAP HANA Cloud database. The metadata, such as podcast episode title, will be used to filter the documents during the retrieval process. We repeat the same step for SAP BTP Documentation which is used by other examples.
 
 
 ## Example: Splitting Data
 
-This example shows various strategies for splitting data into multiple parts to store and use later during the retrieval process to help answer user questions: 1.Recursive text splitter: Recursive chunking based on a list of separators. e.g. dot, new line, etc. 1.Document specific splitter: Splitting based on the document structure. e.g. splitting based on the titles, sections, etc. 1.Document+recursive splitter: Applying the document specific splitter first and then applying the recursive text splitter. 1.Semantic splitter: Splitting based on the semantic meaning of the text. e.g. splitting based on the belonging parts of the text to the same topic.
+This example shows various strategies for splitting data into multiple parts to store and use later during the retrieval process to help answer user questions:  
+1. Recursive text splitter: Recursive chunking based on a list of separators. e.g. dot, new line, etc.  
+1. Document specific splitter: Splitting based on the document structure. e.g. splitting based on the titles, sections, etc.  
+1. Document+recursive splitter: Applying the document specific splitter first and then applying the recursive text splitter.  
+1. Semantic splitter: Splitting based on the semantic meaning of the text. e.g. splitting based on the belonging parts of the text to the same topic. 
 
 From the listed above strategies, only the semantic splitter utilizes embeddings model and requires connection to the SAP AI Core service. All the other strategies process data using local libraries.
 
