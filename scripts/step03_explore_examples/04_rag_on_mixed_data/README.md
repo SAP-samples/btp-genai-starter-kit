@@ -37,7 +37,7 @@ Then we demonstrate *Retrieval Augmented Generation* app that can use both:
 - Unstructured data from Wiki via SAP HANA Cloud Vector engine and SAP GenAI Hub.
 
 We implement the application as a LangChain `SQL Agent` that uses SQLAlchemy dialect for SAP HANA for constructing the SQL Queries, and equip it with an additional custom RAG Tool for answering detailed questions about Cities.
-The agent Iterates on the question presented by the user and uses REACT pattern choosing which tool to select on every iteration. This ecample requires `gpt-4` `gpt-4o`or model for the reliable results.
+The agent Iterates on the question presented by the user and uses REACT pattern choosing which tool to select on every iteration. This example requires `gpt-4` or `gpt-4o` model for the reliable results.
 
 **Example questions:**
 - *Can you give me the country corresponding to each city?* - This question corresponds to the structured data and can be answered by constructing and executing an SQL statement to the `city_stats` table in Hana DB.
