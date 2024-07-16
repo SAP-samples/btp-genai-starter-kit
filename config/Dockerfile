@@ -7,11 +7,6 @@ ENV HOME_FOLDER=/workspaces/$WORKSPACE_FOLDER_NAME
 WORKDIR $HOME_FOLDER
 ENV TEMPFOLDER=/tmp/mytmp
 
-# Install bash and set it as the default shell
-#RUN apt-get install bash
-# SHELL ["/bin/bash", "-c"]
-# RUN ln -sf /bin/bash /bin/sh
-
 # Install necessary packages and tools
 RUN apt-get update && apt-get install -y xdg-utils curl jq unzip git
 
@@ -27,6 +22,7 @@ RUN curl https://pyenv.run | bash \
     && echo 'command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc \
     && echo 'eval "$(pyenv init -)"' >> ~/.bashrc
 
+# Install poetry
 RUN curl -sSL https://install.python-poetry.org | python3 -
 ENV PATH="/root/.local/bin:$PATH"
 
