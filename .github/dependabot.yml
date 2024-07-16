@@ -5,7 +5,9 @@ updates:
     schedule:
       interval: "weekly"
   - package-ecosystem: "pip"
-    directory: "/"
+    directories:
+      - "/scripts/step03_explore_examples/01_naive_rag/"
+      - "/scripts/step03_explore_examples/utils/"
     schedule:
       interval: "weekly"
     target-branch: "refactor/step02"
