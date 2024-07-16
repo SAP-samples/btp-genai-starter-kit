@@ -10,7 +10,14 @@ packages = [{ include = "library" }]
 python = ">=3.11,<3.13"
 pydantic = "^2.8.2"
 requests = "^2.32.3"
+langchain-core = "^0.2.16"
 utils = { path = "../utils", develop = true }
+generative-ai-hub-sdk = "^1.11.1"
+langchain-google-genai = "^1.0.7"
+langchain-openai = "^0.1.16"
+langchain-aws = "^0.1.11"
+langchain-community = "^0.2.7"
+
 
 
 [build-system]

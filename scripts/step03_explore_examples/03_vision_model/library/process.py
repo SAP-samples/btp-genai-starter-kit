@@ -1,9 +1,9 @@
 import logging
 import sys
-import os
 from typing import List
 from pydantic import BaseModel
-import requests
+from langchain_core.language_models.llms import BaseLLM
+from langchain_core.messages import HumanMessage
 
 log = logging.getLogger(__name__)
 
@@ -15,6 +15,11 @@ class Image(BaseModel):
 
 
 class ImageProcessorBase:
+    def __init__(self, image, llm_with_vision: BaseLLM):
+        self.is_valid_image(image)
+        self.image = image
+        self.llm_with_vision = llm_with_vision
+
     def is_valid_image(self, image: Image):
         if not image:
             raise ValueError("Image must be set")
@@ -28,57 +33,16 @@ class ImageProcessorBase:
     def get_prompt(self) -> str:
         raise NotImplementedError("Method get_prompt must be implemented")
 
-    def execute(self, messages: List[dict], auth_token: str) -> str:
+    def execute_via_sdk(self, messages: List[dict]) -> str:
         try:
-            """
-            Executes the image processing by sending a POST request to the AI Core API.
-
-            Args:
-                messages (List[dict]): A list of message dictionaries.
-                auth_token (str): The authentication token for accessing the API.
-
-            Returns:
-                str: The processed image content as text.
-
-            Raises:
-                requests.exceptions.RequestException: If there is an error in the request.
-            """
-            api_base = os.environ.get("AICORE_BASE_URL")
-            deployment_id = os.environ.get("AICORE_DEPLOYMENT")
-            resource_group = os.environ.get("AICORE_RESOURCE_GROUP") or "default"
-
-            api_url = f"{api_base}/v2/inference/deployments/{deployment_id}/invoke"
-            # Create the headers for the request
-            headers = {
-                "Authorization": f"Bearer {auth_token}",
-                "Content-Type": "application/json",
-                "AI-Resource-Group": resource_group,
-            }
-
-            data = {
-                "anthropic_version": "bedrock-2023-05-31",
-                "max_tokens": 4000,
-                "messages": messages,
-            }
-
-            log.info("Executing image processing...")
-
-            response = requests.post(url=api_url, headers=headers, json=data, timeout=20)
-
-            response_as_json = response.json()
-
-            log.info("Image processed")
-
-            return response_as_json["content"][0]["text"]
-        except requests.exceptions.RequestException as e:
-            log.error("Error processing image: {e}")
+            response = self.llm_with_vision.invoke(messages)
+            return response.content
+        except Exception as e:
+            log.error(f"Error executing via SDK: {str(e)}")
             sys.exit()
 
 
 class TabularDataImageProcessor(ImageProcessorBase):
-    def __init__(self, image):
-        super().is_valid_image(image)
-        self.image = image
 
     def get_prompt(self) -> str:
         return """
@@ -91,32 +55,26 @@ class TabularDataImageProcessor(ImageProcessorBase):
             The output should contain ONLY the markdown table WITHOUT any additional explanations.
         """
 
-    def execute(self, auth_token: str) -> str:
+    def execute(self) -> str:
         prompt = self.get_prompt()
-        messages = [
-            {
-                "role": "user",
-                "content": [
-                    {
-                        "type": "image",
-                        "source": {
-                            "type": "base64",
-                            "media_type": self.image.mime_type,
-                            "data": self.image.data,
+        return super().execute_via_sdk(
+            [
+                HumanMessage(
+                    content=[
+                        {"type": "text", "text": prompt},
+                        {
+                            "type": "image_url",
+                            "image_url": {
+                                "url": f"data:image/jpeg;base64,{self.image.data}"
+                            },
                         },
-                    },
-                    {"type": "text", "text": prompt},
-                ],
-            }
-        ]
-
-        return super().execute(messages, auth_token)
+                    ]
+                )
+            ]
+        )
 
 
 class VisualReasoningProcessor(ImageProcessorBase):
-    def __init__(self, image):
-        super().is_valid_image(image)
-        self.image = image
 
     def get_prompt(self) -> str:
         return """
@@ -132,23 +90,20 @@ class VisualReasoningProcessor(ImageProcessorBase):
             Provite the result WITHOUT any additional explanations.
         """
 
-    def execute(self, auth_token: str) -> str:
+    def execute(self) -> str:
         prompt = self.get_prompt()
-        messages = [
-            {
-                "role": "user",
-                "content": [
-                    {
-                        "type": "image",
-                        "source": {
-                            "type": "base64",
-                            "media_type": self.image.mime_type,
-                            "data": self.image.data,
+        return super().execute_via_sdk(
+            [
+                HumanMessage(
+                    content=[
+                        {"type": "text", "text": prompt},
+                        {
+                            "type": "image_url",
+                            "image_url": {
+                                "url": f"data:image/jpeg;base64,{self.image.data}"
+                            },
                         },
-                    },
-                    {"type": "text", "text": prompt},
-                ],
-            }
-        ]
-
-        return super().execute(messages, auth_token)
+                    ]
+                )
+            ]
+        )
