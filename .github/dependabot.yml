@@ -5,7 +5,9 @@ updates:
     schedule:
       interval: "weekly"
   - package-ecosystem: "pip"
-    directory: "/"
+    directories:
+      - "/scripts/step02_deploy_models/"
+      - "/scripts/step03_explore_examples/*"
     schedule:
       interval: "weekly"
   - package-ecosystem: "devcontainers"
