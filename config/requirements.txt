@@ -99,7 +99,7 @@ googleapis-common-protos==1.63.2
     #   grpcio-status
 greenlet==3.0.3
     # via sqlalchemy
-grpcio==1.64.1
+grpcio==1.65.1
     # via
     #   google-api-core
     #   grpcio-status
@@ -135,41 +135,41 @@ jsonpatch==1.33
     # via langchain-core
 jsonpointer==3.0.0
     # via jsonpatch
-langchain==0.2.8
+langchain==0.2.10
     # via
     #   -r requirements.in
     #   langchain-community
-langchain-community==0.2.7
+langchain-community==0.2.9
     # via -r requirements.in
-langchain-core==0.2.19
+langchain-core==0.2.22
     # via
     #   langchain
     #   langchain-community
     #   langchain-google-genai
     #   langchain-openai
     #   langchain-text-splitters
-langchain-google-genai==1.0.7
+langchain-google-genai==1.0.8
     # via -r requirements.in
-langchain-openai==0.1.16
+langchain-openai==0.1.17
     # via -r requirements.in
 langchain-text-splitters==0.2.2
     # via langchain
-langsmith==0.1.85
+langsmith==0.1.93
     # via
     #   langchain
     #   langchain-community
     #   langchain-core
 llama-cloud==0.0.9
     # via llama-index-indices-managed-llama-cloud
-llama-index==0.10.55
+llama-index==0.10.56
     # via -r requirements.in
-llama-index-agent-openai==0.2.8
+llama-index-agent-openai==0.2.9
     # via
     #   llama-index
     #   llama-index-program-openai
 llama-index-cli==0.1.12
     # via llama-index
-llama-index-core==0.10.55
+llama-index-core==0.10.56
     # via
     #   llama-index
     #   llama-index-agent-openai
@@ -183,7 +183,7 @@ llama-index-core==0.10.55
     #   llama-index-readers-file
     #   llama-index-readers-llama-parse
     #   llama-parse
-llama-index-embeddings-openai==0.1.10
+llama-index-embeddings-openai==0.1.11
     # via
     #   llama-index
     #   llama-index-cli
@@ -191,7 +191,7 @@ llama-index-indices-managed-llama-cloud==0.2.5
     # via llama-index
 llama-index-legacy==0.9.48
     # via llama-index
-llama-index-llms-openai==0.1.25
+llama-index-llms-openai==0.1.26
     # via
     #   llama-index
     #   llama-index-agent-openai
@@ -199,7 +199,7 @@ llama-index-llms-openai==0.1.25
     #   llama-index-multi-modal-llms-openai
     #   llama-index-program-openai
     #   llama-index-question-gen-openai
-llama-index-multi-modal-llms-openai==0.1.7
+llama-index-multi-modal-llms-openai==0.1.8
     # via llama-index
 llama-index-program-openai==0.1.6
     # via
@@ -211,7 +211,7 @@ llama-index-readers-file==0.1.30
     # via llama-index
 llama-index-readers-llama-parse==0.1.6
     # via llama-index
-llama-parse==0.4.7
+llama-parse==0.4.9
     # via llama-index-readers-llama-parse
 marshmallow==3.21.3
     # via dataclasses-json
@@ -240,7 +240,7 @@ numpy==1.26.4
     #   llama-index-core
     #   llama-index-legacy
     #   pandas
-openai==1.35.13
+openai==1.37.0
     # via
     #   generative-ai-hub-sdk
     #   langchain-openai
@@ -294,7 +294,7 @@ pyhumps==3.8.0
     # via ai-api-client-sdk
 pyparsing==3.1.2
     # via httplib2
-pypdf==4.3.0
+pypdf==4.3.1
     # via llama-index-readers-file
 python-dateutil==2.9.0.post0
     # via
@@ -347,7 +347,7 @@ sqlalchemy[asyncio]==2.0.31
     #   llama-index-core
     #   llama-index-legacy
     #   sqlalchemy-hana
-sqlalchemy-hana==2.3.0
+sqlalchemy-hana==2.4.0
     # via -r requirements.in
 striprtf==0.0.26
     # via llama-index-readers-file
