@@ -31,6 +31,8 @@ This example shows visual reasoning capabilities. It uses the following picture:
 
 ![image](images/oil-on-street.jpeg)
 
+`This image was generated with AI.`
+
 and a prompt that prescribes to detect potential risks based on the information provided in an image.
 
 
