@@ -1,0 +1,26 @@
+[tool.poetry]
+name = "multi-modal-rag-using-ocr"
+version = "0.1.0"
+description = "Example showing multi modal rag via OCR to extract text tables and images from PDF"
+authors = ["romaniam"]
+readme = "README.md"
+packages = [{ include = "library" }]
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.13"
+unstructured = {extras = ["pdf"], version = "^0.14.10"}
+langchain = "^0.2.7"
+python-dotenv = "^1.0.1"
+pydantic = "^2.8.2"
+generative-ai-hub-sdk = "^1.11.1"
+requests = "^2.32.3"
+langchain-community = "^0.2.7"
+utils = { path = "../utils", develop = true }
+langchain-openai = "^0.1.15"
+langchain-google-genai = "^1.0.7"
+pdfminer-six = "20221105"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
