@@ -10,6 +10,7 @@ updates:
       - "/scripts/step03_explore_examples/*"
     schedule:
       interval: "weekly"
+    target-branch: "refactor/step02"
   - package-ecosystem: "devcontainers"
     directory: "/"
     schedule:
