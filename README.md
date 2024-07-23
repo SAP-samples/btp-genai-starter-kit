@@ -18,7 +18,7 @@ This repo wants to give users of the SAP Business Technology Platform (BTP) a qu
 - The SAP BTP global account needs to be sufficiently entitled to use the following services and applications:
 
   | Name | Service/ Application | Plan |
-  | --- | --- | --- | 
+  | --- | --- | --- |
   | **AI Core** | `aicore` (service)| `extended` |
   | **AI Launchpad** (optional) | `ai-launchpad` (app subscription) | `standard` |
   | **HANA Cloud** | `hana-cloud` (service) | `hana` |
@@ -31,7 +31,7 @@ This repo wants to give users of the SAP Business Technology Platform (BTP) a qu
 - Clone this GitHub repository to your local machine and open it in VS Code.
 - Open the Dev Container on your machine from within VS Code (`Reopen in Dev Container`).
 - Wait for the dev container to be built and the project to be loaded within it.
-  >Be aware that opening the dev container can take a while! 
+  >Be aware that opening the dev container can take a while!
 - In the folder [`config/secrets`](config/secrets) rename the file `btp_ai_setup.tfvars` to `my_btp_ai_setup.tfvars`.
     - adapt the value for `globalaccount` for the subaccount to be created within. You find in the global account landing page ("Subdomain: .....").
     - if you would like to use custom IDP, provide the value for `idp` e.g. `<your-ias-tenant>.accounts.ondemand.com`.
@@ -40,7 +40,7 @@ This repo wants to give users of the SAP Business Technology Platform (BTP) a qu
 - In the folder [`config/secrets`](config/secrets) rename the file `btp_credentials.tfvars` to `my_btp_credentials.tfvars`.
     - adapt the value for the variable `BTP_USERNAME` to your email address.
     - save the file.
-- Within VS Code open a terminal session. 
+- Within VS Code open a terminal session.
 - In the terminal simply type `./run.sh` and enter your `BTP_PASSWORD` as well as the password for the `HANA DB` (you will be prompted accordingly).
   > Make sure that the password for the HANA DB matches the minimum requirements (length >= 8, 1+ upper case chars, 2+ lower case chars, 1+ digit)!
 
@@ -61,7 +61,7 @@ The startet script will now setup the following things for you in your SAP BTP g
 ### Step 2: Deploy AI Models for your genAI experiments in AI Core
 
 >The second step will automatically be taken care of by the running `./run.sh` command from step 1.
-<br>After the successful setup of the BTP subaccount, it calls the python script `step02_fetch_metadata.py` in the folder [`scripts`](scripts).
+<br>After the successful setup of the BTP subaccount, it calls the python script `poetry run python main.py` in the folder [`scripts`](scripts).
 
 That python script does the following:
 
@@ -78,13 +78,13 @@ Here you will find [some examples](scripts/step03_explore_examples/README.md) wi
 
 ## Known Issues
 
-> ❗There is an existing issue that makes AI Core API token invalid for about 1-2 hours after it was created. We implemented a retry mechanism, nevertheless, until the issue is resolved, running the `./run.sh` might result in the following error. 
+> ❗There is an existing issue that makes AI Core API token invalid for about 1-2 hours after it was created. We implemented a retry mechanism, nevertheless, until the issue is resolved, running the `./run.sh` might result in the following error.
 As a temporary workaround, just re-run the `./run.sh` in 1-2 hours.
 ![issue](./pictures/Issue.jpg)
 
 ## How to obtain support
 [Create an issue](https://github.com/SAP-samples/<repository-name>/issues) in this repository if you find a bug or have questions about the content.
- 
+
 For additional support, [ask a question in SAP Community](https://answers.sap.com/questions/ask.html).
 
 ## Contributing

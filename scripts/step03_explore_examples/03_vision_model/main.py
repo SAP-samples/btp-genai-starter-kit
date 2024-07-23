@@ -1,12 +1,15 @@
 import logging
-from modules.load import load
-from modules.process import (
+from library.load import load
+from library.process import (
     Image,
     TabularDataImageProcessor,
     VisualReasoningProcessor,
 )
-from modules.ai import AiCore
+from utils.env import init_env
 import os
+from gen_ai_hub.proxy.langchain.openai import ChatOpenAI
+from gen_ai_hub.proxy.langchain.amazon import ChatBedrock
+from gen_ai_hub.proxy.core.proxy_clients import get_proxy_client
 
 log = logging.getLogger(__name__)
 
@@ -39,21 +42,34 @@ def load_image(src: str, mime_type: str) -> Image:
 
 def execute_visual_reasoning_example():
     image = load_image("images/oil-on-street.jpeg", "image/jpeg")
-    auth_token = AiCore().get_token()
-    image_processor = VisualReasoningProcessor(image=image)
-    output = image_processor.execute(auth_token=auth_token)
+    proxy_client = get_proxy_client("gen-ai-hub")
+    llm_with_vision = ChatOpenAI(
+        proxy_model_name="gpt-4o",
+        proxy_client=proxy_client,
+        temperature=0,
+    )
+    image_processor = VisualReasoningProcessor(image=image, llm_with_vision=llm_with_vision)
+    output = image_processor.execute()
     print(output)
 
 
 def execute_tabular_data_example():
     image = load_image("images/supplement-ingredients.png", "image/png")
-    auth_token = AiCore().get_token()
-    image_processor = TabularDataImageProcessor(image=image)
-    output = image_processor.execute(auth_token=auth_token)
+    proxy_client = get_proxy_client("gen-ai-hub")
+    llm_with_vision = ChatBedrock(
+        model_name="anthropic--claude-3-sonnet",
+        proxy_client=proxy_client,
+        temperature=0,
+    )
+    image_processor = TabularDataImageProcessor(image=image, llm_with_vision=llm_with_vision)
+    output = image_processor.execute()
     print(output)
 
 
 def main():
+    # Load environment variables
+    init_env()
+
     print("\n")
     print("Welcome to the AI Core Image Processing Examples")
     print("================================================")
@@ -66,22 +82,19 @@ def main():
         print("\n")
 
     while True:
-        try:
             print_header()
-            example = input("Which example would you like to run? ").strip()
+            option = input("Which example would you like to run? ").strip()
 
-            if example == "1":
+            if option == "1":
                 execute_visual_reasoning_example()
                 continue
-            elif example == "2":
+            elif option == "2":
                 execute_tabular_data_example()
                 continue
-            elif example == "3":
+            elif option == "3":
                 break
             else:
                 print("Invalid input. Please enter a number between 1 and ")
-        except ValueError:
-            print("Invalid input. Please enter a number between 1 and 3")
 
 
 if __name__ == "__main__":

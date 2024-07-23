@@ -27,4 +27,6 @@ echo "--------------------------------------------------------------------------
 echo "Prepare the AI Core service"
 echo "--------------------------------------------------------------------------------"
 cd ..
-python step02_fetch_metadata/step02_fetch_metadata.py
+cd step02_deploy_models
+poetry install
+poetry run python main.py

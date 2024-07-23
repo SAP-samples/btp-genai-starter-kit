@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "ai-model-deployment"
+version = "0.1.0"
+description = "Deployment of AI models"
+authors = ["romaniam"]
+readme = "README.md"
+packages = [{ include = "library" }]
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.13"
+requests = "^2.32.3"
+python-dotenv = "^1.0.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

@@ -5,9 +5,12 @@ updates:
     schedule:
       interval: "weekly"
   - package-ecosystem: "pip"
-    directory: "/"
+    directories:
+      - "/scripts/step02_deploy_models/"
+      - "/scripts/step03_explore_examples/*"
     schedule:
       interval: "weekly"
+    target-branch: "refactor/step02"
   - package-ecosystem: "devcontainers"
     directory: "/"
     schedule:
