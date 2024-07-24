@@ -1,9 +1,5 @@
 version: 2
 updates:
-  - package-ecosystem: "github-actions"
-    directory: "/"
-    schedule:
-      interval: "weekly"
   - package-ecosystem: "pip"
     directories:
       - "/scripts/step02_deploy_models/"
