@@ -43,3 +43,7 @@ The agent Iterates on the question presented by the user and uses REACT pattern 
 - *Can you give me the country corresponding to each city?* - This question corresponds to the structured data and can be answered by constructing and executing an SQL statement to the `city_stats` table in Hana DB.
 - *Tell me about the history of Berlin.* - Answer on this question can not be found in the `city_stats` table and requires a call to the `RAGTool` for accessing relevant Wiki Pages info.
 - *Tell me about the arts and culture of the city with the highest population.* - Answer to this question requires both, finding out the city with the highest population and using the `RAGTool` for accessing relevant Wiki Pages info.
+
+## 3. Process Overview
+
+![image](docs/images/process_diagram.png)
