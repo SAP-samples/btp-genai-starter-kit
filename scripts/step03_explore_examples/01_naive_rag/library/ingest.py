@@ -16,11 +16,6 @@ from .factory import create_llm_and_embeddings
 log = getLogger(__name__)
 
 
-def file_filter(file_path):
-    print(f"Current filepath: {file_path}")
-    return file_path.startswith("docs") and file_path.endswith(".md")
-
-
 def fetch_docs():
     try:
         log.info("Getting the documents from the GitHub repository")

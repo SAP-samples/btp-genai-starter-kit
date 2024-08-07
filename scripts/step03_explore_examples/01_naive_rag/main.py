@@ -33,6 +33,9 @@ def chat():
         try:
             log.info(f"Asking a question: {question}")
 
+            log.info(
+                "Embedding the questions and executing vector similarity search..."
+            )
             # Invoke the conversational retrieval chain with the user's question
             result = qa_chain.invoke({"question": question})
 
