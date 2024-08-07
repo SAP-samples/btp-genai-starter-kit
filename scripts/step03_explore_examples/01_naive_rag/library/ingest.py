@@ -22,7 +22,8 @@ def fetch_docs():
         loader = GitLoader(
             clone_url="https://github.com/SAP/terraform-provider-btp",
             repo_path="./gen/docs/",
-            file_filter=lambda file_path: file_path.endswith(".md"),
+            file_filter=lambda file_path: file_path.startswith("./gen/docs/docs")
+            and file_path.endswith(".md"),
             branch="main",
         )
         documents = loader.load()
