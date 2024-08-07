@@ -16,13 +16,19 @@ from .factory import create_llm_and_embeddings
 log = getLogger(__name__)
 
 
+def file_filter(file_path):
+    print(f"Current filepath: {file_path}")
+    return file_path.startswith("docs") and file_path.endswith(".md")
+
+
 def fetch_docs():
     try:
         log.info("Getting the documents from the GitHub repository")
         loader = GitLoader(
             clone_url="https://github.com/SAP/terraform-provider-btp",
             repo_path="./gen/docs/",
-            file_filter=lambda file_path: file_path.endswith(".md"),
+            file_filter=lambda file_path: file_path.startswith("./gen/docs/docs")
+            and file_path.endswith(".md"),
             branch="main",
         )
         documents = loader.load()
