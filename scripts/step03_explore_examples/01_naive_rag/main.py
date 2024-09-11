@@ -19,27 +19,40 @@ def chat():
     while True:
         question = input("Ask a question or type 'exit' to leave: ")
 
+        # remove spaces from the question
+        question = question.strip()
+
         if question.lower() == "exit":
             print("Goodbye!")
             sys.exit()
 
-        log.info(f"Asking a question: {question}")
+        elif not question:
+            print("Please provide a question.")
+            continue
 
-        # Invoke the conversational retrieval chain with the user's question
-        result = qa_chain.invoke({"question": question})
+        try:
+            log.info(f"Asking a question: {question}")
 
-        # Output the answer from LLM
-        log.success("Answer from LLM:")
-        print(result["answer"])
+            log.info(
+                "Embedding the questions and executing vector similarity search..."
+            )
+            # Invoke the conversational retrieval chain with the user's question
+            result = qa_chain.invoke({"question": question})
 
-        # Output the source document chunks used for the answer
-        source_docs = result["source_documents"]
-        print("================")
-        log.info(f"Number of used source document chunks: {len(source_docs)}")
-        for doc in source_docs:
-            print("-" * 80)
-            log.info(doc.page_content)
-            log.info(doc.metadata)
+            # Output the answer from LLM
+            log.success("Answer from LLM:")
+            print(result["answer"])
+
+            # Output the source document chunks used for the answer
+            source_docs = result["source_documents"]
+            print("================")
+            log.info(f"Number of used source document chunks: {len(source_docs)}")
+            for doc in source_docs:
+                print("-" * 80)
+                log.info(doc.page_content)
+                log.info(doc.metadata)
+        except Exception as e:
+            log.error(f"Error occurred while asking a question: {str(e)}")
 
 
 def main():
@@ -65,7 +78,10 @@ def main():
             continue
         elif option == "1":
             docs = fetch_docs()
-            ingest(docs)
+            try:
+                ingest(docs)
+            except Exception as e:
+                log.error(f"Error occurred while ingesting data: {str(e)}")
             continue
         elif option == "2":
             chat()
