@@ -7,7 +7,7 @@ from langchain_community.document_loaders import GitLoader
 from utils.rag import split_docs_into_chunks
 
 from helpers.factory import setup_components
-from helpers.config import SAP_DOCS_TABLE_NAME, PODCASTS_TABLE_NAME
+from helpers.config import SAP_DOCS_TABLE_NAME, PODCASTS_TABLE_NAME, TERRAFORM_TABLE_NAME
 
 log = logging.getLogger(__name__)
 
@@ -76,11 +76,43 @@ def ingest_sap_docs():
     db.add_documents(chunks)
     log.success("Added SAP btp docs successfully!")
 
+def load_terraform_docs_from_github():
+    # Load the documents from a GitHub repository
+    loader = GitLoader(
+        clone_url="https://github.com/SAP/terraform-provider-btp",
+        repo_path="./gen/docs/",
+        file_filter=lambda file_path: file_path.startswith("./gen/docs/docs")
+        and file_path.endswith(".md"),
+        branch="main",
+    )
+    text_documents = loader.load()
+    log.info("Getting the Terraform documents from the GitHub repository ...")
+
+    # Split the documents into chunks
+    chunks = split_docs_into_chunks(documents=text_documents)
+    return chunks    
+
+def ingest_terraform_docs():
+
+    log.info("Ingesting Terraform docs ...")
+    _, _, db = setup_components(TERRAFORM_TABLE_NAME)
+
+    chunks = load_terraform_docs_from_github()
+
+    # Delete already existing documents from the table
+    log.info("Deleting existing Terraform docs from the table ...")
+    db.delete(filter={})
+    log.success("Terraform docs chunks deleted successfully!")
+
+    # add the loaded document chunks to the HANA DB
+    log.info("Adding Terraform docs chunks to the HANA DB ...")
+    db.add_documents(chunks)
+    log.success("Added Terraform docs successfully!")
 
 def main():
     ingest_podcasts()
     ingest_sap_docs()
-
+    ingest_terraform_docs()
 
 if __name__ == "__main__":
     main()

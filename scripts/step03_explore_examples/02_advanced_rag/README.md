@@ -52,4 +52,7 @@ In many GenAI cases users are allowed to formulate questions in a free form. Tha
 
 We use LangChain to generate multiple queries similar to the user query, retrieve relevant documents for all of them and then combine results together using Reciprocal Rank Fusion algorithm. The final list of documents is then used to generate the response. We will also compare results with and without RAG Fusion.
 
+## Example: LLM-Judged RAG Benchmarking
+
+This example aims to create a RetrievalQA chain to query a HANA database and validate the accuracy of responses using a Large Language Model (LLM). The results are then displayed in a formatted table.
 

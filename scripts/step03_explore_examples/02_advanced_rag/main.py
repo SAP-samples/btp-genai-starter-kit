@@ -7,6 +7,7 @@ from utils.hana import teardown_hana_table
 from helpers.config import (
     SAP_DOCS_TABLE_NAME,
     PODCASTS_TABLE_NAME,
+    TERRAFORM_TABLE_NAME,
 )
 
 from src import (
@@ -15,6 +16,7 @@ from src import (
     rewrite_retrieve_read_main,
     self_query_main,
     split_data_main,
+    benchmark_accuracy,
 )
 
 log = logging.getLogger(__name__)
@@ -36,13 +38,15 @@ def main():
         print("3: Advanced RAG - Self Query")
         print("4: Advanced RAG - Rewrite Retrieve Read")
         print("5: Advanced RAG - RAG Fusion")
-        print("6: Exit\n")
+        print("6: LLM-Judged RAG Benchmarking")
+        print("7: Exit\n")
 
         option = input("Which task would you like to run?").strip()
 
         if option == "0":
             teardown_hana_table(SAP_DOCS_TABLE_NAME)
             teardown_hana_table(PODCASTS_TABLE_NAME)
+            teardown_hana_table(TERRAFORM_TABLE_NAME)
             continue
         elif option == "1":
             ingest_main()
@@ -60,6 +64,9 @@ def main():
             rag_fusion_main()
             break
         elif option == "6":
+            benchmark_accuracy()
+            break        
+        elif option == "7":
             print("Goodbye!")
             sys.exit()
         else:
