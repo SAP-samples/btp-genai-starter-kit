@@ -1,5 +1,6 @@
 import logging
 import re
+import sys
 
 from langchain_community.document_loaders import PyMuPDFLoader
 from langchain_community.document_loaders import GitLoader
@@ -31,34 +32,58 @@ def load_documents_from_github():
 
 
 def ingest_podcasts():
+    """
+    Ingest Podcast data into HANA db.
+    """
     _, _, db = setup_components(PODCASTS_TABLE_NAME)
 
-    print("Load the docuents into the HANA DB to get them vectorized")
-
-    # Download transcript from Episode 64 of the SAP podcast
-    loader_ep64 = PyMuPDFLoader(
-        "https://sap-podcast-bucket.s3.amazonaws.com/the-future-of-supply-chain/The_Future_of_Supply_Chain_Episode_64_transcript.pdf"
-    )
-    # Download transcript from Episode 65 of the SAP podcast
-    loader_ep65 = PyMuPDFLoader(
-        "https://sap-podcast-bucket.s3.amazonaws.com/the-future-of-supply-chain/The_Future_of_Supply_Chain_Episode_65_transcript.pdf"
-    )
-
-    # Load the documents and split them into chunks
-    chunks = loader_ep64.load_and_split()
-    chunks += loader_ep65.load_and_split()
-
-    print(chunks[0])
-
-    # Delete already existing documents from the table
-    log.info("Deleting existing podcasts from the table ...")
+    # Clear any existing documents
     db.delete(filter={})
-    log.success("Podcasts deleted successfully!")
 
-    # add the loaded document chunks to the HANA DB
-    log.info("Adding podcast chunks to the HANA DB ...")
-    db.add_documents(chunks)
-    log.success("Added podcast chunks successfully!")
+    # Podcast data
+    episodes = [
+        {
+            "url": "https://sap-podcast-bucket.s3.amazonaws.com/the-future-of-supply-chain/The_Future_of_Supply_Chain_Episode_64_transcript.pdf",
+            "title": "Future of Supply Chain: Episode 64: Proactively Planning for Risk in Your Supply Chain with Everstream's Koray Kose and SAP's Volker Wilhelm",
+            "episode": 64,
+        },
+        {
+            "url": "https://sap-podcast-bucket.s3.amazonaws.com/the-future-of-supply-chain/The_Future_of_Supply_Chain_Episode_65_transcript.pdf",
+            "title": "The Future of Supply Chain: Episode 65: Grounding Your Supply Chain in Data with Google Cloud’s Paula Natoli",
+            "episode": 65,
+        },
+    ]
+
+    # Process and add documents for each episode
+    for ep in episodes:
+        loader = PyMuPDFLoader(ep["url"])
+        documents = load_and_process_documents(loader, ep["title"], ep["episode"])
+        db.add_documents(documents)
+
+    log.info("Retriever created successfully.")
+
+
+def load_and_process_documents(loader, podcast_title, episode):
+    """
+    Load documents using PyMuPDFLoader and add metadata.
+
+    Args:
+        loader: The document loader object.
+        podcast_title: The title of the podcast.
+        episode: The episode number.
+
+    Returns:
+        List of documents with added metadata.
+    """
+    try:
+        documents = loader.load()
+        for doc in documents:
+            doc.metadata["podcast_title"] = podcast_title
+            doc.metadata["episode"] = episode
+        return documents
+    except Exception as e:
+        log.info(f"Error loading documents: {str(e)}")
+        sys.exit(1)
 
 
 def ingest_sap_docs():
