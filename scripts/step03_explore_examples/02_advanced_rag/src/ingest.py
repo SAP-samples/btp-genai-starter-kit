@@ -83,17 +83,17 @@ def ingest_podcasts():
 
 
 def load_and_process_documents(loader, podcast_title, episode):
-       """  
-    Load documents using a loader and add metadata.  
-  
-    Args:  
-        loader: The document loader object.  
-        podcast_title: The title of the podcast.  
-        episode: The episode number.  
-  
-    Returns:  
-        List of documents with added metadata.  
-    """ 
+    """
+    Load documents using a loader and add metadata.
+
+    Args:
+        loader: The document loader object.
+        podcast_title: The title of the podcast.
+        episode: The episode number.
+
+    Returns:
+        List of documents with added metadata.
+    """
     try:
         documents = loader.load()
         for doc in documents:
