@@ -101,7 +101,7 @@ def load_and_process_documents(loader, podcast_title, episode):
             doc.metadata["episode"] = episode
         return documents
     except Exception as e:
-        log.info(f"Error loading documents: {str(e)}")
+        log.error(f"Error loading documents for podcast '{podcast_title}': {str(e)}")
         sys.exit(1)
 
 
