@@ -56,7 +56,7 @@ We use LangChain to generate multiple queries similar to the user query, retriev
 
 Getting an accurate response from an LLM can be a tedious task. In the 'Self Query' example, we tried to overcome this challenge. Building on that, in this example we demonstrate the usage of SelfQueryRetriever for HANA vectorstore to filter relevant documents before performing semantic search in order to deliver a more accurate response.
 
-A SelfQueryRetriever utilizes the LLM to create a structured query tailored for HANA DB. This structured query is then applied to the underlying HANA database, which stores document embeddings and metadata. The retriever not only matches the user’s query semantically with the contents of stored documents, but it can also extract filters from the query based on metadata (such as episode or podcast title) and apply these filters to efficiently retrieve relevant documents from HANA DB.
+We demonstrate how SelfQueryRetriever utilizes the LLM to create a structured query tailored for HANA DB. This structured query is then applied to the underlying HANA database, which stores document embeddings and metadata. The retriever not only matches the user’s query semantically with the contents of stored documents, but it can also extract filters from the query based on metadata (such as episode or podcast title) and apply these filters to efficiently retrieve relevant documents from HANA DB.
 
 This process enables the retriever to go beyond simple semantic matching, using metadata-based filters and structured queries to retrieve highly relevant results.
 
