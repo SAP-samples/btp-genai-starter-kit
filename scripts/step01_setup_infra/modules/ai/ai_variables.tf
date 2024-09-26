@@ -28,6 +28,7 @@ variable "target_ai_core_model" {
         "anthropic--claude-3-sonnet",
         "anthropic--claude-3-haiku",
         "anthropic--claude-3-opus",
+        "anthropic--claude-3.5-sonnet",
         "amazon--titan-embed-text",
         "amazon--titan-text-lite",
         "amazon--titan-text-express",
