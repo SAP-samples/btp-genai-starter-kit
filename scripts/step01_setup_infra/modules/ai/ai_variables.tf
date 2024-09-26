@@ -16,7 +16,7 @@ variable "ai_core_plan_name" {
 variable "target_ai_core_model" {
   type        = list(any)
   description = "Defines the target AI core model to be used by the AI Core service"
-  default     = ["gpt-35-turbo"]
+  default     = ["anthropic--claude-3-haiku"]
 
   validation {
     condition = length([
