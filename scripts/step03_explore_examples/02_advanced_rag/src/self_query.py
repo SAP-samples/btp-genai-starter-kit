@@ -5,7 +5,6 @@ from langchain.chains import RetrievalQA
 from langchain_core.prompts import PromptTemplate
 from langchain_core.pydantic_v1 import BaseModel, Field
 
-from utils.env import init_env
 
 from helpers.config import PODCASTS_TABLE_NAME
 from helpers.factory import setup_components
@@ -13,7 +12,7 @@ from helpers.factory import setup_components
 log = logging.getLogger(__name__)
 
 
-def main():
+def execute_self_query():
     llm, _, db = setup_components(PODCASTS_TABLE_NAME)
     question = "What is the summary of the episode 65?"
 
@@ -89,9 +88,3 @@ def qa_documents_with_filters(db, llm, question, advanced_db_filter=None):
         print("Title:", doc.metadata["title"], " Page Number:", doc.metadata["page"])
 
     print("Result:", result["result"])
-
-
-if __name__ == "__main__":
-    # Load environment variables
-    init_env()
-    main()

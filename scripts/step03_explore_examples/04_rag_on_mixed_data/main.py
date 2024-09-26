@@ -31,8 +31,7 @@ def main():
             question = input("Ask a question or type 'exit' to leave: ")
 
             if question.lower() == "exit":
-                print("Goodbye!")
-                sys.exit()
+                break
 
             log.info(f"Asking a question: {question}")
             agent_executor.invoke({"input": question})
@@ -54,7 +53,7 @@ def main():
             continue
         elif option == "2":
             ask()
-            break
+            continue
         elif option == "3":
             print("Goodbye!")
             sys.exit()

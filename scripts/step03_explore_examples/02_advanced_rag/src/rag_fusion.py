@@ -13,7 +13,7 @@ from helpers.factory import setup_components
 log = logging.getLogger(__name__)
 
 
-def main():
+def execute_rag_fusion():
     llm, _, db = setup_components(SAP_DOCS_TABLE_NAME)
 
     template = """
@@ -112,7 +112,3 @@ def reciprocal_rank_fusion(results: list[list], k=60):
     return reranked_results
 
 
-if __name__ == "__main__":
-    # Load environment variables
-    init_env()
-    main()
