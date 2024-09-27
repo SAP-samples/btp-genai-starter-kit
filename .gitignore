@@ -23,3 +23,5 @@ gen
 
 # VScode specific files
 .vscode/
+
+/**/06_rag_benchmarking/data
