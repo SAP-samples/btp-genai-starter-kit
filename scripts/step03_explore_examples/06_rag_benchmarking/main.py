@@ -23,7 +23,7 @@ def main():
         print("0: Prerequisite - Clean up database")
         print("1: Prerequisite - Ingest sample data")
         print("2: RAG Benchmarking with LLM-as-a-judge")        
-        print("3: Generate Golden Test Set")
+        print("3: Generate Golden Test Set with Ragas Framework")
         print("4: RAG Benchmarking with LLM-as-a-judge using golden test set")        
         print("5: Exit\n")
 
