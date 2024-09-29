@@ -12,7 +12,7 @@ variable "idp" {
 variable "cli_server_url" {
   type        = string
   description = "The BTP CLI server URL."
-  default     = null    #points to default endpoint as maintained in BTP terraform provider
+  default     = null #points to default endpoint as maintained in BTP terraform provider
 }
 
 variable "switch_setup_ai_launchpad" {
@@ -86,7 +86,7 @@ variable "hana_system_password" {
 variable "target_ai_core_model" {
   type        = list(any)
   description = "Defines the target AI core model to be used by the AI Core service. Depending on the region different foundation models might be available; checkout SAP note 3437766 (https://me.sap.com/notes/3437766) for reference."
-  default     = ["gpt-35-turbo"]
+  default     = ["anthropic--claude-3-haiku"]
 }
 
 
