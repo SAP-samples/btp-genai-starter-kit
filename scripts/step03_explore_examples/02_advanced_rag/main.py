@@ -35,9 +35,9 @@ def main():
         print("1: Prerequisite - Ingest sample data")
         print("2: Advanced RAG - Compare Splitter Methods")
         print("3: Advanced RAG - Self Query")
-        print("4: Advanced RAG - Rewrite Retrieve Read")
-        print("5: Advanced RAG - RAG Fusion")
-        print("6: Advanced RAG - HANA Self Query")
+        print("4: Advanced RAG - HANA Self Query")
+        print("5: Advanced RAG - Rewrite Retrieve Read")
+        print("6: Advanced RAG - RAG Fusion")
         print("7: Exit\n")
 
         option = input("Which task would you like to run?").strip()
@@ -56,13 +56,13 @@ def main():
             execute_self_query()
             continue
         elif option == "4":
-            execute_rewrite_retrieve_read()
+            execute_hana_self_query()            
             continue
         elif option == "5":
             execute_rag_fusion()
             continue
         elif option == "6":
-            execute_hana_self_query()
+            execute_rewrite_retrieve_read()
             continue
         elif option == "7":
             print("Goodbye!")
