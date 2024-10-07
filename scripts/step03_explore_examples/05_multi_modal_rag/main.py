@@ -52,7 +52,7 @@ def main():
             continue
         elif option == "2":
             ask(llm, retriever)
-            break
+            continue
         elif option == "3":
             print("Goodbye!")
             sys.exit()

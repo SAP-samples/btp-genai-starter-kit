@@ -23,8 +23,7 @@ def chat():
         question = question.strip()
 
         if question.lower() == "exit":
-            print("Goodbye!")
-            sys.exit()
+            break
 
         elif not question:
             print("Please provide a question.")
@@ -85,7 +84,7 @@ def main():
             continue
         elif option == "2":
             chat()
-            break
+            continue
         elif option == "3":
             print("Goodbye!")
             sys.exit()

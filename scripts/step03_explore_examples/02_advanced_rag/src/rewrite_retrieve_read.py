@@ -3,7 +3,6 @@ import logging
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
-from utils.env import init_env
 
 from helpers.factory import setup_components
 from helpers.config import SAP_DOCS_TABLE_NAME
@@ -12,7 +11,7 @@ from helpers.config import SAP_DOCS_TABLE_NAME
 log = logging.getLogger(__name__)
 
 
-def main():
+def execute_rewrite_retrieve_read():
     print("Rewrite, retrieve, and read")
 
     llm, _, db = setup_components(SAP_DOCS_TABLE_NAME)
@@ -83,9 +82,3 @@ def invoke_query_with_rewrite(llm, simple_query, prompt, retriever):
 
     rewritten_result = rewrite_retrieve_read_chain.invoke(simple_query)
     print("QA result after query rewrite: ", rewritten_result)
-
-
-if __name__ == "__main__":
-    # Load environment variables
-    init_env()
-    main()

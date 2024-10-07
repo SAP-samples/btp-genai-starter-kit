@@ -1,6 +1,6 @@
-from .ingest import main as ingest_main
-from .split_data import main as split_data_main
-from .rag_fusion import main as rag_fusion_main
-from .self_query import main as self_query_main
-from .rewrite_retrieve_read import main as rewrite_retrieve_read_main
-from .hana_self_query import main as hana_self_query_main
+from .ingest import execute_ingestion
+from .split_data import execute_split_data
+from .rag_fusion import execute_rag_fusion
+from .self_query import execute_self_query
+from .rewrite_retrieve_read import execute_rewrite_retrieve_read
+from .hana_self_query import execute_hana_self_query

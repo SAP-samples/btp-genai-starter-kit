@@ -68,7 +68,6 @@ def ask(llm, retriever):
 
         # Check if the user wants to exit
         if question.lower() == "exit":
-            print("Goodbye!")
             break
 
         log.info(

@@ -40,6 +40,14 @@ Retrieving relevant document for RAG can be challenging. In this example, we dem
 
 First, we will extract title data from the user query. After that, we will use the title data to filter the documents stored in the SAP HANA Cloud Vector Engine during the retrieval process. The retrieved documents will be used to generate responses using the SAP GenAI Hub.
 
+## Example: HANA Self Query
+
+Getting an accurate response from an LLM can be a tedious task. In the 'Self Query' example, we tried to overcome this challenge. Building on that, in this example we demonstrate the usage of SelfQueryRetriever for HANA vectorstore to filter relevant documents before performing semantic search in order to deliver a more accurate response.
+
+We demonstrate how SelfQueryRetriever utilizes the LLM to create a structured query tailored for HANA DB. This structured query is then applied to the underlying HANA database, which stores document embeddings and metadata. The retriever not only matches the user’s query semantically with the contents of stored documents, but it can also extract filters from the query based on metadata (such as episode or podcast title) and apply these filters to efficiently retrieve relevant documents from HANA DB.
+
+This process enables the retriever to go beyond simple semantic matching, using metadata-based filters and structured queries to retrieve highly relevant results.
+
 ## Example: Rewrite-Retrieve-Read
 
 In many GenAI cases users are allowed to formulate questions in a free form. That can lead to ambiguity in the question that LLMs can not understand. There are two possible outcomes out of it: LLM will guess the meaning of the query and possibly hallucinate or it will answer something like 'I don't know'. This example shows how to use the SAP BTP services to implement query rewriting to reduce query ambiguity and improve the quality of the response.
@@ -52,12 +60,5 @@ In many GenAI cases users are allowed to formulate questions in a free form. Tha
 
 We use LangChain to generate multiple queries similar to the user query, retrieve relevant documents for all of them and then combine results together using Reciprocal Rank Fusion algorithm. The final list of documents is then used to generate the response. We will also compare results with and without RAG Fusion.
 
-## Example: HANA Self Query
-
-Getting an accurate response from an LLM can be a tedious task. In the 'Self Query' example, we tried to overcome this challenge. Building on that, in this example we demonstrate the usage of SelfQueryRetriever for HANA vectorstore to filter relevant documents before performing semantic search in order to deliver a more accurate response.
-
-We demonstrate how SelfQueryRetriever utilizes the LLM to create a structured query tailored for HANA DB. This structured query is then applied to the underlying HANA database, which stores document embeddings and metadata. The retriever not only matches the user’s query semantically with the contents of stored documents, but it can also extract filters from the query based on metadata (such as episode or podcast title) and apply these filters to efficiently retrieve relevant documents from HANA DB.
-
-This process enables the retriever to go beyond simple semantic matching, using metadata-based filters and structured queries to retrieve highly relevant results.
 
 

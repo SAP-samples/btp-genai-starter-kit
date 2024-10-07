@@ -10,13 +10,11 @@ from llama_index.core import SimpleDirectoryReader
 from llama_index.core.node_parser import SemanticSplitterNodeParser
 from llama_index.embeddings.langchain import LangchainEmbedding
 
-from utils.env import init_env
-
 
 log = logging.getLogger(__name__)
 
 
-def main():
+def execute_split_data():
     print("Compare different splitting strategies")
 
     # Load the documents from a GitHub repository
@@ -137,9 +135,3 @@ def semantic_split_docs_into_chunks(documents: list[Document]):
     log.info(f"Split {len(documents)} documents into {len(nodes)} chunks.")
 
     return nodes
-
-
-if __name__ == "__main__":
-    # Load environment variables
-    init_env()
-    main()

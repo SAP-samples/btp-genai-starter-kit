@@ -131,10 +131,7 @@ def ingest_sap_docs():
         log.error(f"Error during SAP documents ingestion: {str(e)}")
 
 
-def main():
+def execute_ingestion():
     ingest_podcasts()
     ingest_sap_docs()
 
-
-if __name__ == "__main__":
-    main()
