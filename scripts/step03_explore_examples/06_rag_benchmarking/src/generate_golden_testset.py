@@ -6,7 +6,7 @@ from gen_ai_hub.proxy.langchain.openai import ChatOpenAI
 from gen_ai_hub.proxy.langchain.openai import OpenAIEmbeddings
 from gen_ai_hub.proxy.core.proxy_clients import get_proxy_client
 
-from helpers.config import EMBEDDINGS_MODEL_NAME, CRITIC_LLM, TEST_SIZE, GENERATOR_LLM
+from helpers.config import EMBEDDINGS_MODEL_NAME, CRITIC_LLM, TEST_SIZE, GENERATOR_LLM, TESTSET_RELATIVE_FILE_PATH
 from utils.ingest_docs import fetch_terraform_docs
 
 GEN_AI_HUB = "gen-ai-hub"
@@ -15,7 +15,7 @@ DISTRIBUTIONS = {
     multi_context: 0.4,
     reasoning: 0.1
 }
-OUTPUT_PATH = Path('data/golden_test_set.csv')
+OUTPUT_PATH = Path(TESTSET_RELATIVE_FILE_PATH)
 
 logger = logging.getLogger(__name__)
 

@@ -4,9 +4,11 @@ import csv
 from pathlib import Path
 
 from rag_benchmark_utils.common_utils import create_retriever, validate_response, print_results
-from helpers.config import TERRAFORM_DOCS_TABLE_NAME
+from helpers.config import TERRAFORM_DOCS_TABLE_NAME, TESTSET_RELATIVE_FILE_PATH
 
-RELATIVE_FILE_PATH = Path("data/golden_test_set.csv")
+NA = "N/A"
+FAILED = "Failed"
+RELATIVE_FILE_PATH = Path(TESTSET_RELATIVE_FILE_PATH)
 
 log = logging.getLogger(__name__)
 
@@ -45,13 +47,13 @@ def evaluate_with_golden_testset():
     total_rating = 0
 
     for case in test_cases:
-        query = case.get("question", "N/A")
-        golden_answer = case.get("ground_truth", "N/A")
+        query = case.get("question", NA)
+        golden_answer = case.get("ground_truth", NA)
 
         try:
             log.info(f"Asking question: {query}")
             result = qa_chain.invoke({"query": query})
-            actual_answer = result.get("result", "N/A")
+            actual_answer = result.get("result", NA)
             log.info(f"Response: {actual_answer}")            
             context = result.get("source_documents")
             # Validate the response using the LLM
@@ -74,13 +76,13 @@ def evaluate_with_golden_testset():
             results.append(
                 [
                     query,
-                    "N/A",
+                    NA,
                     golden_answer,
-                    "Failed",
-                    "Failed",
-                    "Failed",
-                    "Failed",
-                    "Failed",
+                    FAILED,
+                    FAILED,
+                    FAILED,
+                    FAILED,
+                    FAILED,
                 ]
             )
 

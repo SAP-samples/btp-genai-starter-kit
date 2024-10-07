@@ -3,6 +3,9 @@ import logging
 from rag_benchmark_utils.common_utils import create_retriever, validate_response, print_results
 from helpers.config import TERRAFORM_DOCS_TABLE_NAME
 
+NA = "N/A"
+FAILED = "Failed"
+
 log = logging.getLogger(__name__)
 
 def evaluate_without_golden_testset():
@@ -27,14 +30,14 @@ def evaluate_without_golden_testset():
         try:
             log.info(f"Asking question: {query}")
             result = qa_chain.invoke({"query": query})
-            actual_answer = result.get("result", "N/A")
+            actual_answer = result.get("result", NA)
             log.info(f"Response: {actual_answer}")
             # Validate the response using the LLM
             validation_result = validate_response(query, actual_answer)
             results.append([query, actual_answer, str(validation_result.rating), validation_result.reasoning])
         except Exception as e:
             log.error(f"Error occurred while asking question: {str(e)}")
-            results.append([query, "N/A", "Failed", "Failed"])
+            results.append([query, NA, FAILED, FAILED])
 
     headers = ["Query", "Actual Answer", "Total rating", "Validation result reasoning"]
     print_results(results, headers)
