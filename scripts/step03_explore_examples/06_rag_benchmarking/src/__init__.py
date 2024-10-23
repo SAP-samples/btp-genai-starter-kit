@@ -2,3 +2,4 @@ from .ingest import execute_ingestion
 from .generate_golden_testset import generate_golden_testset
 from .evaluate_without_golden_testset import evaluate_without_golden_testset
 from .evaluate_with_golden_testset import evaluate_with_golden_testset
+from .evaluate_with_ragas import evaluate_with_ragas

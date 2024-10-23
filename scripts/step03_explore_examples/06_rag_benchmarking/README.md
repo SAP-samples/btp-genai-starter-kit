@@ -53,3 +53,42 @@ The benchmarking process evaluates the RAG system using the following metrics:
 - **Description**: Measures the relevancy of the retrieved context.
 - **Evaluation**: This metric is calculated based on both the question and the contexts. The values fall within the range of 0 to 1, with higher values indicating better relevancy.
 
+## Example: RAG Benchmarking with Ragas
+
+This example demonstrates how to benchmark RAG applications using the Ragas framework. 
+Ragas provides tools to evaluate Large Language Model (LLM) applications and supports several LLM based and Non-LLM based metrics. Ragas Critiques offers a range of predefined aspects like correctness, harmfulness, coherence, correctness and conciseness. Critiques within the LLM evaluators evaluate submissions based on the provided aspect.
+
+The example uses Ragas to evaluate the RAG system using the following metrics:
+
+#### 1. Context Precision
+Measures the proportion of relevant contexts retrieved relative to the total number of contexts returned.
+
+#### 2. Faithfulness
+Measures the factual consistency of the generated answer against the given context.
+
+#### 3. Answer Relevancy
+Assesses how pertinent the generated answer is to the user question.
+
+#### 4. Answer Correctness
+Measures the accuracy of the generated answer when compared to the ground truth.
+
+#### 5. Context Recall
+Evaluates the proportion of relevant contexts retrieved out of all possible relevant contexts available.
+
+#### 6. Answer Similarity
+Assesses how similar the generated answer is to a predefined correct answer or ground truth.
+
+#### 7. Coherence
+Evaluates how logically consistent and connected the generated response is as a whole.
+
+#### 8. Harmfulness
+Measures the potential for generated content to cause harm or spread misinformation.
+
+#### 9. Maliciousness
+Assesses the likelihood that generated responses contain malicious intent or promote harmful actions.
+
+#### 10. BLEU Score
+BLEU (Bilingual Evaluation Understudy) measures the quality of generated text by comparing it to one or more reference texts.
+
+#### 11. ROUGE Score
+ROUGE (Recall-Oriented Understudy for Gisting Evaluation) measures the overlap between the generated text and reference text, focusing on recall.

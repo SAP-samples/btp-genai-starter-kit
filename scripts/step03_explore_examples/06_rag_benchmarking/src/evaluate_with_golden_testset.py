@@ -1,9 +1,7 @@
 import logging
-import sys
-import csv
 from pathlib import Path
 
-from rag_benchmark_utils.common_utils import create_retriever, validate_response, print_results
+from rag_benchmark_utils.common_utils import create_retriever, validate_response, print_results, read_test_cases_from_csv
 from helpers.config import TERRAFORM_DOCS_TABLE_NAME, TESTSET_RELATIVE_FILE_PATH
 
 NA = "N/A"
@@ -11,27 +9,6 @@ FAILED = "Failed"
 RELATIVE_FILE_PATH = Path(TESTSET_RELATIVE_FILE_PATH)
 
 log = logging.getLogger(__name__)
-
-def read_test_cases_from_csv(file_path):
-    """
-    Reads test cases from a CSV file.
-    """
-    test_cases = []
-    try:
-        file_path = Path(file_path)
-        with file_path.open(mode="r", encoding="utf-8") as file:
-            reader = csv.DictReader(file)
-            for row in reader:
-                test_cases.append(
-                    {
-                        "question": row.get("question"),
-                        "ground_truth": row.get("ground_truth"),
-                    }
-                )
-    except Exception as e:
-        log.error(f"Error reading CSV file: {e}")
-        sys.exit("Failed to read test cases from CSV file, program exiting.")
-    return test_cases
 
 def evaluate_with_golden_testset():
     """
@@ -41,7 +18,7 @@ def evaluate_with_golden_testset():
     absolute_path = grandparent_dir / RELATIVE_FILE_PATH
     test_cases = read_test_cases_from_csv(absolute_path)
 
-    qa_chain = create_retriever(TERRAFORM_DOCS_TABLE_NAME)
+    qa_chain = create_retriever(TERRAFORM_DOCS_TABLE_NAME, return_source_documents=True)
     results = []
     total_questions = len(test_cases)
     total_rating = 0

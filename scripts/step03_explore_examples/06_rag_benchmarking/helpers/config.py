@@ -5,3 +5,4 @@ GENERATOR_LLM = "gpt-4o"
 CRITIC_LLM = "gpt-4o"
 TEST_SIZE = 5  #Number of test questions to generate
 TESTSET_RELATIVE_FILE_PATH = "data/golden_test_set.csv"
+RAGAS_EVALUATION_RESULT_FILE_PATH = "data/ragas_evaluation_result.csv"
