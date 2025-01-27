@@ -95,10 +95,10 @@ variable "region" {
   description = "The region where the sub account shall be created in."
   default     = "us10"
 
-  # Checkout https://github.com/SAP-samples/btp-service-metadata/blob/main/v0/developer/aicore.json for the latest list of regions
-  # supported by the AI Core service.
+  # Checkout https://github.com/SAP-samples/btp-service-metadata/blob/main/v1/developer/aicore.json for the latest list of regions
+  # supported by the AI Core service ("extended" plan).
   validation {
-    condition     = contains(["ap10", "eu10", "eu11", "eu20", "eu30", "jp10", "us10", "us21", "us30"], var.region)
+    condition     = contains(["ap10", "ap11", "ap20", "ap30", "eu10", "eu11", "eu20", "eu30", "jp10", "sa30", "us10", "us21", "us30"], var.region)
     error_message = "Please enter a valid region for the sub account. Checkout https://github.com/SAP-samples/btp-service-metadata/blob/main/v0/developer/aicore.json for regions providing the AI Core service with the serice plan 'extended'."
   }
 }
