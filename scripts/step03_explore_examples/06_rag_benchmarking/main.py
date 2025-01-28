@@ -8,6 +8,7 @@ from src import (
     generate_golden_testset,
     evaluate_without_golden_testset,
     evaluate_with_golden_testset,
+    evaluate_with_ragas,
 )
 
 def main():
@@ -24,8 +25,9 @@ def main():
         print("1: Prerequisite - Ingest sample data")
         print("2: RAG Benchmarking with LLM-as-a-judge")        
         print("3: Generate Golden Test Set with Ragas Framework")
-        print("4: RAG Benchmarking with LLM-as-a-judge using golden test set")        
-        print("5: Exit\n")
+        print("4: RAG Benchmarking with LLM-as-a-judge using golden test set")
+        print("5: RAG Benchmarking with Ragas")               
+        print("6: Exit\n")
 
         option = input("Which task would you like to run?").strip()
 
@@ -43,8 +45,11 @@ def main():
             continue
         elif option == "4":
             evaluate_with_golden_testset()
-            continue        
+            continue
         elif option == "5":
+            evaluate_with_ragas()
+            continue
+        elif option == "6":
             print("Goodbye!")
             sys.exit()
         else:
