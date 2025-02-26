@@ -48,7 +48,7 @@ This repo wants to give users of the SAP Business Technology Platform (BTP) a qu
 `export BTP_ENABLE_SSO=true`
 
 
-The startet script will now setup the following things for you in your SAP BTP global account:
+The starter script will now setup the following things for you in your SAP BTP global account:
 
 - It creates a subaccount with the name configured in the `my_btp_ai_setup.tfvars` file (folder `config/secrets`).
 - It creates service instances/subscriptions for the following services
