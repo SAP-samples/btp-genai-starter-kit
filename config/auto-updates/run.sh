@@ -27,6 +27,19 @@ echo "--------------------------------------------------------------------------
 echo "Prepare the AI Core service"
 echo "--------------------------------------------------------------------------------"
 cd ..
-cd step02_deploy_models
+cd step02_detect_models
 poetry install
 poetry run python main.py
+
+echo "--------------------------------------------------------------------------------"
+echo "Cleaning up SAP BTP infrastructure"
+echo "--------------------------------------------------------------------------------"
+cd ../step01_setup_infra
+terraform destroy -var-file="../../secrets/my_btp_credentials.tfvars" -var-file="../../secrets/my_btp_ai_setup.tfvars"  --auto-approve
+echo "--------------------------------------------------------------------------------"
+echo "Cleaning up metadata files"
+echo "--------------------------------------------------------------------------------"
+
+# Cleanup metadata
+rm -rf step01_setup_infra/terraform.*
+rm -rf step01_setup_infra/.terraform*
