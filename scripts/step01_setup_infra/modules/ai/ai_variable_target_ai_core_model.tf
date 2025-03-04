@@ -8,7 +8,7 @@ variable "target_ai_core_model" {
   validation {
     condition = length([
       for o in var.target_ai_core_model : true
-      if contains([        
+      if contains([
         "amazon--nova-lite",
         "amazon--nova-micro",
         "amazon--nova-pro",
@@ -43,7 +43,7 @@ variable "target_ai_core_model" {
         "textembedding-gecko-multilingual",
       ], o)
     ]) == length(var.target_ai_core_model)
-    error_message = "Please enter a valid entry for the target_ai_core_model of the AI Core service. See https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/models-and-scenarios-in-generative-ai-hub (Model Name) for the list of supported values."  
+    error_message = "Please enter a valid entry for the target_ai_core_model of the AI Core service. See https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/models-and-scenarios-in-generative-ai-hub (Model Name) for the list of supported values."
   }
 }
 

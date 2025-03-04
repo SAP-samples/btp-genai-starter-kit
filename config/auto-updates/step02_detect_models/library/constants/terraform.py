@@ -8,7 +8,7 @@ variable "target_ai_core_model" {
   validation {
     condition = length([
       for o in var.target_ai_core_model : true
-      if contains([        
+      if contains([
 <<AVAILABLE_MODELS>>
       ], o)
     ]) == length(var.target_ai_core_model)
