@@ -11,7 +11,7 @@ ENV TEMPFOLDER=/tmp/mytmp
 RUN apt-get update && apt-get install -y xdg-utils curl jq unzip git
 
 # Install Terraform CLI
-RUN TERRAFORM_VERSION=$(curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r .current_version) \
+RUN TERRAFORM_VERSION=$(curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r .current_version | sed 's/^v//') \
     && curl -O https://releases.hashicorp.com/terraform/${TERRAFORM_VERSION}/terraform_${TERRAFORM_VERSION}_linux_amd64.zip \
     && unzip terraform_${TERRAFORM_VERSION}_linux_amd64.zip -d /usr/bin \
     && rm terraform_${TERRAFORM_VERSION}_linux_amd64.zip
