@@ -51,7 +51,7 @@ jobs:
           export BTP_PASSWORD=${{ secrets.BTP_PASSWORD }}
 
           cd ${{ env.FOLDER_TF_SCRIPT }}
-          terraform apply -var-file="${{ env.FILE_TF_SCRIPT_VARS_FILE }}" -var 'globalaccount=${{ env.GLOBALACCOUNT }}' -var 'globalaccount=${{ env.REGION }}' -var 'admins=${{ env.ADMINS }}' -auto-approve -no-color 
+          terraform apply -var-file="${{ env.FILE_TF_SCRIPT_VARS_FILE }}" -var 'BTP_USERNAME=${{ env.BTP_USERNAME }}' -var 'BTP_PASSWORD=${{ env.BTP_PASSWORD }}' -var 'globalaccount=${{ env.GLOBALACCOUNT }}' -var 'globalaccount=${{ env.REGION }}' -var 'admins=${{ env.ADMINS }}' -auto-approve -no-color 
 
       - name: Run code to detect new LLMs
         id: detect_llms
@@ -70,7 +70,8 @@ jobs:
           export BTP_PASSWORD=${{ secrets.BTP_PASSWORD }}
 
           cd ${{ env.FOLDER_TF_SCRIPT }}
-          terraform destroy -var-file="${{ env.FILE_TF_SCRIPT_VARS_FILE }}" -var 'globalaccount=${{ env.GLOBALACCOUNT }}' -var 'globalaccount=${{ env.REGION }}' -var 'admins=${{ env.ADMINS }}' -auto-approve -no-color 
+          terraform destroy -var-file="${{ env.FILE_TF_SCRIPT_VARS_FILE }}" -var 'BTP_USERNAME=${{ env.BTP_USERNAME }}' -var 'BTP_PASSWORD=${{ env.BTP_PASSWORD }}' -var 'globalaccount=${{ env.GLOBALACCOUNT }}' -var 'globalaccount=${{ env.REGION }}' -var 'admins=${{ env.ADMINS }}' -auto-approve -no-color 
+
       - name: "Store changes in GH repository"
         run: |
           git add -A
