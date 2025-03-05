@@ -1,8 +1,9 @@
 name: Auto-update available LLMs
 
 on:
+  # Run every Friday at 01:00am 
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "0 1 * * 5"
   workflow_dispatch:
 
 permissions:
@@ -14,21 +15,25 @@ env:
   BTP_USERNAME: ${{ secrets.BTP_USERNAME }}
   BTP_PASSWORD: ${{ secrets.BTP_PASSWORD }}
   GLOBALACCOUNT: ${{ secrets.GLOBALACCOUNT }}
+  SUBACCOUNTNAME: 'GenAI starter kit auto-update'
   REGION: ${{ secrets.REGION }}
   ADMINS: ${{ secrets.ADMINS }}
-  FOLDER_TF_SCRIPT: 'config/auto-updates/step101_setup_infra'
+  FOLDER_TF_SCRIPT: 'config/auto-updates/step01_setup_infra'
   FOLDER_PYTHON_SCRIPT: 'config/auto-updates/step02_detect_models'
-  FILE_TF_SCRIPT_VARS_FILE: 'setup.tfvars'
 
 jobs:
   setup_infrastructure:
-    name: Test
+    name: Fetch LLMs
     runs-on: ubuntu-latest
 
     steps:
       - name: Check out Git repository
         id: checkout_repo
         uses: actions/checkout@v4
+
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+
       - name: Setup Terraform
         id : setup_terraform
         uses: hashicorp/setup-terraform@v3
@@ -51,7 +56,7 @@ jobs:
           export BTP_PASSWORD=${{ secrets.BTP_PASSWORD }}
 
           cd ${{ env.FOLDER_TF_SCRIPT }}
-          terraform apply -var-file="${{ env.FILE_TF_SCRIPT_VARS_FILE }}" -var 'globalaccount=${{ env.GLOBALACCOUNT }}' -var 'globalaccount=${{ env.REGION }}' -var 'admins=${{ env.ADMINS }}' -auto-approve -no-color 
+          terraform apply -var 'BTP_USERNAME=${{ env.BTP_USERNAME }}' -var 'BTP_PASSWORD=${{ env.BTP_PASSWORD }}' -var 'globalaccount=${{ env.GLOBALACCOUNT }}' -var 'subaccount_name=${{ env.SUBACCOUNTNAME }}' -var 'region=${{ env.REGION }}' -var 'admins=${{ env.ADMINS }}' -auto-approve -no-color 
 
       - name: Run code to detect new LLMs
         id: detect_llms
@@ -70,11 +75,34 @@ jobs:
           export BTP_PASSWORD=${{ secrets.BTP_PASSWORD }}
 
           cd ${{ env.FOLDER_TF_SCRIPT }}
-          terraform destroy -var-file="${{ env.FILE_TF_SCRIPT_VARS_FILE }}" -var 'globalaccount=${{ env.GLOBALACCOUNT }}' -var 'globalaccount=${{ env.REGION }}' -var 'admins=${{ env.ADMINS }}' -auto-approve -no-color 
-      - name: "Store changes in GH repository"
-        run: |
-          git add -A
-          git config user.email "btprepobot@users.noreply.github.com"
-          git config user.name "BTP Metadata Repo Bot"
-          git diff --quiet && git diff --staged --quiet || git commit -m "[btpmr-bot] $(date '+%Y-%m-%d %H:%M:%S'): updated LLMs"
-          git push origin ${{ github.ref_name }}
+          terraform destroy -var 'BTP_USERNAME=${{ env.BTP_USERNAME }}' -var 'BTP_PASSWORD=${{ env.BTP_PASSWORD }}' -var 'globalaccount=${{ env.GLOBALACCOUNT }}' -var 'subaccount_name=${{ env.SUBACCOUNTNAME }}' -var 'region=${{ env.REGION }}' -var 'admins=${{ env.ADMINS }}' -auto-approve -no-color 
+
+      # - name: "Store changes in GH repository"
+      #   run: |
+      #     git add -A
+      #     git config user.email "${{ env.BTP_USERNAME }}"
+      #     git config user.name "AUTO UPDATE"
+      #     git diff --quiet && git diff --staged --quiet || git commit -m "[btpmr-bot] $(date '+%Y-%m-%d %H:%M:%S'): updated LLMs"
+      #     git push origin ${{ github.ref_name }}
+
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.MY_GITHUB_TOKEN }}
+          commit-message: updated list of supported LLMs
+          committer: github-actions[bot] <genaistarterkit+github-actions[bot]@users.noreply.github.com>
+          author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
+          signoff: false
+          branch: update_llms
+          branch-suffix: timestamp
+          delete-branch: true
+          title: '[auto generated] updated list of supported LLMs'
+          body: |
+            Auto-updated list of supported LLMs
+            - Updated with currently available LLMS on GenAI Hub
+            - Auto-generated 
+          labels: |
+            LLM update
+            automated pr
+          draft: false
