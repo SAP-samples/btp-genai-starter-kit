@@ -1,9 +1,9 @@
 name: Auto-update available LLMs
 
 on:
-  # Run every Monday at 01:00am 
+  # Run every Friday at 01:00am 
   schedule:
-    - cron: "0 1 * * 1"
+    - cron: "0 1 * * 5"
   workflow_dispatch:
 
 permissions:
