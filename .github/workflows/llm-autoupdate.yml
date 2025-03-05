@@ -94,7 +94,7 @@ jobs:
           committer: github-actions[bot] <genaistarterkit+github-actions[bot]@users.noreply.github.com>
           author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
           signoff: false
-          branch: update_llm_$(date '+%Y%m%d_%H%M%S')
+          branch: update_llms
           delete-branch: true
           title: 'Auto-updated LLMs'
           body: |
