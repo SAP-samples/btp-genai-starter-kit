@@ -79,7 +79,7 @@ jobs:
       - name: "Store changes in GH repository"
         run: |
           git add -A
-          git config user.email "btprepobot@users.noreply.github.com"
-          git config user.name "BTP Metadata Repo Bot"
+          git config user.email "${{ env.BTP_USERNAME }}"
+          git config user.name "AUTO UPDATE"
           git diff --quiet && git diff --staged --quiet || git commit -m "[btpmr-bot] $(date '+%Y-%m-%d %H:%M:%S'): updated LLMs"
           git push origin ${{ github.ref_name }}
