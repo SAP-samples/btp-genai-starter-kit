@@ -95,6 +95,7 @@ jobs:
           author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
           signoff: false
           branch: update_llms
+          branch-suffix: timestamp
           delete-branch: false
           title: 'Auto-updated LLMs'
           body: |
