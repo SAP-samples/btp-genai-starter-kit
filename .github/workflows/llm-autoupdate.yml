@@ -55,7 +55,7 @@ jobs:
           export BTP_PASSWORD=${{ secrets.BTP_PASSWORD }}
 
           cd ${{ env.FOLDER_TF_SCRIPT }}
-          terraform apply -var 'BTP_USERNAME=rui.nogueira@sap.com' -var 'BTP_PASSWORD=${{ env.BTP_PASSWORD }}' -var 'globalaccount=${{ env.GLOBALACCOUNT }}' -var 'subaccount_name=${{ env.SUBACCOUNTNAME }}' -var 'region=${{ env.REGION }}' -var 'admins=${{ env.ADMINS }}' -auto-approve -no-color 
+          terraform apply -var 'BTP_USERNAME=${{ env.BTP_USERNAME }}' -var 'BTP_PASSWORD=${{ env.BTP_PASSWORD }}' -var 'globalaccount=${{ env.GLOBALACCOUNT }}' -var 'subaccount_name=${{ env.SUBACCOUNTNAME }}' -var 'region=${{ env.REGION }}' -var 'admins=${{ env.ADMINS }}' -auto-approve -no-color 
 
       - name: Run code to detect new LLMs
         id: detect_llms
