@@ -16,7 +16,7 @@ env:
   GLOBALACCOUNT: ${{ secrets.GLOBALACCOUNT }}
   REGION: ${{ secrets.REGION }}
   ADMINS: ${{ secrets.ADMINS }}
-  FOLDER_TF_SCRIPT: 'config/auto-updates/step101_setup_infra'
+  FOLDER_TF_SCRIPT: 'config/auto-updates/step01_setup_infra'
   FOLDER_PYTHON_SCRIPT: 'config/auto-updates/step02_detect_models'
   FILE_TF_SCRIPT_VARS_FILE: 'setup.tfvars'
 
