@@ -12,7 +12,7 @@ variable "target_ai_core_model" {
 <<AVAILABLE_MODELS>>
       ], o)
     ]) == length(var.target_ai_core_model)
-    error_message = "Please enter a valid entry for the target_ai_core_model of the AI Core service. See https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/models-and-scenarios-in-generative-ai-hub (Model Name) for the list of supported values."  
+    error_message = "Please enter a valid entry for the target_ai_core_model of the AI Core service. See https://help.sap.com/docs/sap-ai-core/sap-ai-core-service-guide/models-and-scenarios-in-generative-ai-hub (Model Name) for the list of supported values."
   }
 }
 
