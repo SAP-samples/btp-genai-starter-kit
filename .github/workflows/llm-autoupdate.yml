@@ -1,8 +1,9 @@
 name: Auto-update available LLMs
 
 on:
+  # Run every Monday at 01:00am 
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "0 1 * * 1"
   workflow_dispatch:
 
 permissions:
@@ -22,7 +23,7 @@ env:
 
 jobs:
   setup_infrastructure:
-    name: Test
+    name: Fetch LLMs
     runs-on: ubuntu-latest
 
     steps:
@@ -76,10 +77,31 @@ jobs:
           cd ${{ env.FOLDER_TF_SCRIPT }}
           terraform destroy -var 'BTP_USERNAME=${{ env.BTP_USERNAME }}' -var 'BTP_PASSWORD=${{ env.BTP_PASSWORD }}' -var 'globalaccount=${{ env.GLOBALACCOUNT }}' -var 'subaccount_name=${{ env.SUBACCOUNTNAME }}' -var 'region=${{ env.REGION }}' -var 'admins=${{ env.ADMINS }}' -auto-approve -no-color 
 
-      - name: "Store changes in GH repository"
-        run: |
-          git add -A
-          git config user.email "${{ env.BTP_USERNAME }}"
-          git config user.name "AUTO UPDATE"
-          git diff --quiet && git diff --staged --quiet || git commit -m "[btpmr-bot] $(date '+%Y-%m-%d %H:%M:%S'): updated LLMs"
-          git push origin ${{ github.ref_name }}
+      # - name: "Store changes in GH repository"
+      #   run: |
+      #     git add -A
+      #     git config user.email "${{ env.BTP_USERNAME }}"
+      #     git config user.name "AUTO UPDATE"
+      #     git diff --quiet && git diff --staged --quiet || git commit -m "[btpmr-bot] $(date '+%Y-%m-%d %H:%M:%S'): updated LLMs"
+      #     git push origin ${{ github.ref_name }}
+
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.MY_GITHUB_TOKEN }}
+          commit-message: Auto-updated LLM
+          committer: github-actions[bot] <genaistarterkit+github-actions[bot]@users.noreply.github.com>
+          author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
+          signoff: false
+          branch: update_llm_$(date '+%Y%m%d_%H%M%S')
+          delete-branch: true
+          title: 'Auto-updated LLMs'
+          body: |
+            Update report
+            - Updated with currently available LLMS on GenAI Hub
+            - Auto-generated 
+          labels: |
+            LLM update
+            automated pr
+          draft: false
