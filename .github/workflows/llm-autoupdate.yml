@@ -29,6 +29,10 @@ jobs:
       - name: Check out Git repository
         id: checkout_repo
         uses: actions/checkout@v4
+
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+
       - name: Setup Terraform
         id : setup_terraform
         uses: hashicorp/setup-terraform@v3
