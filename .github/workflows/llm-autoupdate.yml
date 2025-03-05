@@ -90,16 +90,16 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           token: ${{ secrets.MY_GITHUB_TOKEN }}
-          commit-message: [auto generated] updated list of supported LLMs
+          commit-message: updated list of supported LLMs
           committer: github-actions[bot] <genaistarterkit+github-actions[bot]@users.noreply.github.com>
           author: ${{ github.actor }} <${{ github.actor_id }}+${{ github.actor }}@users.noreply.github.com>
           signoff: false
           branch: update_llms
           branch-suffix: timestamp
           delete-branch: true
-          title: 'Auto-updated LLMs'
+          title: '[auto generated] updated list of supported LLMs'
           body: |
-            Auto-updated LLMs
+            Auto-updated list of supported LLMs
             - Updated with currently available LLMS on GenAI Hub
             - Auto-generated 
           labels: |
