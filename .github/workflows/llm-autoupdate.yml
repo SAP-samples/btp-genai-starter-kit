@@ -14,11 +14,11 @@ env:
   BTP_USERNAME: ${{ secrets.BTP_USERNAME }}
   BTP_PASSWORD: ${{ secrets.BTP_PASSWORD }}
   GLOBALACCOUNT: ${{ secrets.GLOBALACCOUNT }}
+  SUBACCOUNTNAME: 'GenAI starter kit auto-update'
   REGION: ${{ secrets.REGION }}
   ADMINS: ${{ secrets.ADMINS }}
   FOLDER_TF_SCRIPT: 'config/auto-updates/step01_setup_infra'
   FOLDER_PYTHON_SCRIPT: 'config/auto-updates/step02_detect_models'
-  FILE_TF_SCRIPT_VARS_FILE: 'setup.tfvars'
 
 jobs:
   setup_infrastructure:
@@ -51,7 +51,7 @@ jobs:
           export BTP_PASSWORD=${{ secrets.BTP_PASSWORD }}
 
           cd ${{ env.FOLDER_TF_SCRIPT }}
-          terraform apply -var-file="${{ env.FILE_TF_SCRIPT_VARS_FILE }}" -var 'BTP_USERNAME=${{ env.BTP_USERNAME }}' -var 'BTP_PASSWORD=${{ env.BTP_PASSWORD }}' -var 'globalaccount=${{ env.GLOBALACCOUNT }}' -var 'globalaccount=${{ env.REGION }}' -var 'admins=${{ env.ADMINS }}' -auto-approve -no-color 
+          terraform apply -var 'BTP_USERNAME=${{ env.BTP_USERNAME }}' -var 'BTP_PASSWORD=${{ env.BTP_PASSWORD }}' -var 'globalaccount=${{ env.GLOBALACCOUNT }}' -var 'subaccount_name=${{ env.SUBACCOUNTNAME }}' -var 'globalaccount=${{ env.REGION }}' -var 'admins=${{ env.ADMINS }}' -auto-approve -no-color 
 
       - name: Run code to detect new LLMs
         id: detect_llms
@@ -70,7 +70,7 @@ jobs:
           export BTP_PASSWORD=${{ secrets.BTP_PASSWORD }}
 
           cd ${{ env.FOLDER_TF_SCRIPT }}
-          terraform destroy -var-file="${{ env.FILE_TF_SCRIPT_VARS_FILE }}" -var 'BTP_USERNAME=${{ env.BTP_USERNAME }}' -var 'BTP_PASSWORD=${{ env.BTP_PASSWORD }}' -var 'globalaccount=${{ env.GLOBALACCOUNT }}' -var 'globalaccount=${{ env.REGION }}' -var 'admins=${{ env.ADMINS }}' -auto-approve -no-color 
+          terraform destroy -var 'BTP_USERNAME=${{ env.BTP_USERNAME }}' -var 'BTP_PASSWORD=${{ env.BTP_PASSWORD }}' -var 'globalaccount=${{ env.GLOBALACCOUNT }}' -var 'subaccount_name=${{ env.SUBACCOUNTNAME }}' -var 'globalaccount=${{ env.REGION }}' -var 'admins=${{ env.ADMINS }}' -auto-approve -no-color 
 
       - name: "Store changes in GH repository"
         run: |
