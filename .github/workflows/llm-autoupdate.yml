@@ -1,0 +1,80 @@
+name: Auto-update available LLMs
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  issues: write
+
+env:
+  # Credentials used by the Terraform script
+  BTP_USERNAME: ${{ secrets.BTP_USERNAME }}
+  BTP_PASSWORD: ${{ secrets.BTP_PASSWORD }}
+  GLOBALACCOUNT: ${{ secrets.GLOBALACCOUNT }}
+  REGION: ${{ secrets.REGION }}
+  ADMINS: ${{ secrets.ADMINS }}
+  FOLDER_TF_SCRIPT: 'config/auto-updates/step101_setup_infra'
+  FOLDER_PYTHON_SCRIPT: 'config/auto-updates/step02_detect_models'
+  FILE_TF_SCRIPT_VARS_FILE: 'setup.tfvars'
+
+jobs:
+  setup_infrastructure:
+    name: Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out Git repository
+        id: checkout_repo
+        uses: actions/checkout@v4
+      - name: Setup Terraform
+        id : setup_terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_wrapper: false
+          terraform_version: latest
+
+      - name: Terraform Init
+        id: terraform_init
+        shell: bash
+        run: |
+          cd ${{ env.FOLDER_TF_SCRIPT }}
+          terraform init -no-color
+
+      - name: Terraform apply
+        id: terraform_apply
+        shell: bash
+        run: |
+          export BTP_USERNAME=${{ secrets.BTP_USERNAME }}
+          export BTP_PASSWORD=${{ secrets.BTP_PASSWORD }}
+
+          cd ${{ env.FOLDER_TF_SCRIPT }}
+          terraform apply -var-file="${{ env.FILE_TF_SCRIPT_VARS_FILE }}" -var 'globalaccount=${{ env.GLOBALACCOUNT }}' -var 'globalaccount=${{ env.REGION }}' -var 'admins=${{ env.ADMINS }}' -auto-approve -no-color 
+
+      - name: Run code to detect new LLMs
+        id: detect_llms
+        shell: bash
+        run: |
+          cd ${{ env.FOLDER_PYTHON_SCRIPT }}
+          poetry install
+          poetry run python main.py
+
+
+      - name: Terraform destroy
+        id: terraform_destroy
+        shell: bash
+        run: |
+          export BTP_USERNAME=${{ secrets.BTP_USERNAME }}
+          export BTP_PASSWORD=${{ secrets.BTP_PASSWORD }}
+
+          cd ${{ env.FOLDER_TF_SCRIPT }}
+          terraform destroy -var-file="${{ env.FILE_TF_SCRIPT_VARS_FILE }}" -var 'globalaccount=${{ env.GLOBALACCOUNT }}' -var 'globalaccount=${{ env.REGION }}' -var 'admins=${{ env.ADMINS }}' -auto-approve -no-color 
+      - name: "Store changes in GH repository"
+        run: |
+          git add -A
+          git config user.email "btprepobot@users.noreply.github.com"
+          git config user.name "BTP Metadata Repo Bot"
+          git diff --quiet && git diff --staged --quiet || git commit -m "[btpmr-bot] $(date '+%Y-%m-%d %H:%M:%S'): updated LLMs"
+          git push origin ${{ github.ref_name }}

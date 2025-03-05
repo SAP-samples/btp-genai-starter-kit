@@ -18,7 +18,7 @@ variable "cli_server_url" {
 variable "switch_setup_ai_launchpad" {
   type        = bool
   description = "Switch to enable the setup of the AI Launchpad."
-  default     = true
+  default     = false
 }
 
 variable "subaccount_name" {
