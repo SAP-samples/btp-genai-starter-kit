@@ -15,7 +15,21 @@ log = logging.getLogger(__name__)
 def execute_self_query():
     llm, _, db = setup_components(PODCASTS_TABLE_NAME)
     question = "What is the summary of the episode 65?"
+    self_query(db, llm, question)
 
+    log.success("""Self querying completed successfully!
+                Now lets try to ask 'What is the summary of the episode 67?' and see how self-querying helps to avoid hallucination.
+                """)
+    
+    question = "What is the summary of the episode 67?"
+    self_query(db, llm, question)
+
+    log.success("""Self querying completed successfully!
+                Compare list of used documents for both questions and see how self-querying helps to avoid hallucination by filtering out irrelevant documents.
+                """)
+    
+def self_query(db, llm, question):
+    print("Question: ", question)
     print("Without database filtering based on user query")
     qa_documents_with_filters(db, llm, question)
 
@@ -24,10 +38,6 @@ def execute_self_query():
 
     advanced_db_filter = {"title": {"$like": f"%{podcast.title()}%"}}
     qa_documents_with_filters(db, llm, question, advanced_db_filter)
-
-    log.success("""Self querying completed successfully!
-                Now try to ask 'What is the summary of the episode 67?' and notice how self-querying can help to avoid hallucination.
-                """)
 
 
 # Extract the podcast title from the questionp
