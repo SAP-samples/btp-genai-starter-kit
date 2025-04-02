@@ -16,7 +16,7 @@ python-dotenv = "^1.0.1"
 utils = { path = "../utils", develop = true }
 langchain-google-genai = "^1.0.7"
 langchain-openai = "^0.1.13"
-langchain-core = "^0.2.28"
+langchain-core = "^0.2.43"
 
 [build-system]
 requires = ["poetry-core"]
