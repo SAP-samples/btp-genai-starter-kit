@@ -16,7 +16,7 @@ generative-ai-hub-sdk = "^1.11.1"
 langchain-google-genai = "^1.0.7"
 langchain-openai = "^0.1.16"
 langchain-aws = "^0.1.11"
-langchain-community = "^0.2.7"
+langchain-community = "^0.2.19"
 
 
 
