@@ -36,6 +36,7 @@ variable "target_ai_core_model" {
         "ibm--granite-13b-chat",
         "meta--llama3.1-70b-instruct",
         "mistralai--mistral-large-instruct",
+        "mistralai--mistral-small-instruct",
         "o1",
         "o3",
         "o3-mini",
