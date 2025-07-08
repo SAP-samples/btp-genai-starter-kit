@@ -8,6 +8,8 @@ from gen_ai_hub.proxy.langchain.openai import ChatOpenAI
 from gen_ai_hub.proxy.core.proxy_clients import get_proxy_client
 from langchain.chains import RetrievalQA
 from langchain.prompts import PromptTemplate
+import csv
+from pathlib import Path
 
 from helpers.factory import setup_components
 from helpers.config import CRITIC_LLM
@@ -30,7 +32,7 @@ class ValidationResult(BaseModel):
 
     model_config = ConfigDict(str_min_length=1, str_strip_whitespace=True)    
 
-def create_retriever(table_name):
+def create_retriever(table_name, return_source_documents=False):
     """
     Creates a RetrievalQA chain for querying HANA DB
     """
@@ -57,6 +59,7 @@ def create_retriever(table_name):
         llm,
         chain_type="stuff",
         retriever=retriever,
+        return_source_documents=return_source_documents,
         chain_type_kwargs=chain_type_kwargs,
     )
 
@@ -133,7 +136,7 @@ def validate_response(question: str, response: str, golden_answer: str = None, c
         
         Now here is the system_answer to be rated: {response}
         here is the golden_answer: {golden_answer}
-        and here is the {context}"""
+        and here is the context: {context}"""
     else:
         system_prompt = f"""
         You will be given a user_question by the user.
@@ -201,4 +204,25 @@ def validate_response(question: str, response: str, golden_answer: str = None, c
             )
     except Exception as e:
         log.error(f"Error during response validation: {e}")
-        sys.exit("Response validation failed, program exiting.")    
+        sys.exit("Response validation failed, program exiting.")
+
+def read_test_cases_from_csv(file_path):
+    """
+    Reads test cases from a CSV file.
+    """
+    test_cases = []
+    try:
+        file_path = Path(file_path)
+        with file_path.open(mode="r", encoding="utf-8") as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                test_cases.append(
+                    {
+                        "question": row.get("question"),
+                        "ground_truth": row.get("ground_truth"),
+                    }
+                )
+    except Exception as e:
+        log.error(f"Error reading CSV file: {e}")
+        sys.exit("Failed to read test cases from CSV file, program exiting.")
+    return test_cases        
