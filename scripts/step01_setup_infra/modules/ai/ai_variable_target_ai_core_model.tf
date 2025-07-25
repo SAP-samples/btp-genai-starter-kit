@@ -11,6 +11,7 @@ variable "target_ai_core_model" {
       if contains([
         "amazon--nova-lite",
         "amazon--nova-micro",
+        "amazon--nova-premier",
         "amazon--nova-pro",
         "amazon--titan-embed-text",
         "amazon--titan-text-express",
@@ -27,6 +28,7 @@ variable "target_ai_core_model" {
         "gemini-2.0-flash",
         "gemini-2.0-flash-lite",
         "gemini-2.5-flash",
+        "gemini-2.5-pro",
         "gpt-35-turbo",
         "gpt-35-turbo-0125",
         "gpt-4",
