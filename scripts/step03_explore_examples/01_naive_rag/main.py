@@ -1,6 +1,5 @@
 import logging
 import sys
-
 from utils.env import init_env
 from utils.hana import teardown_hana_table
 

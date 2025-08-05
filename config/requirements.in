@@ -1,7 +1,10 @@
 generative-ai-hub-sdk
 gitpython
+hdbcli
 langchain
+langchain_aws
 langchain-community
+langchain-core
 langchain-google-genai
 langchain-openai
 lark
@@ -10,3 +13,4 @@ llama-index-embeddings-langchain
 openai
 pymupdf
 python-dotenv
+requests

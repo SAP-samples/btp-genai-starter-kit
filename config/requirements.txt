@@ -32,6 +32,12 @@ banks==2.2.0
     # via llama-index-core
 beautifulsoup4==4.13.4
     # via llama-index-readers-file
+boto3==1.40.2
+    # via langchain-aws
+botocore==1.40.2
+    # via
+    #   boto3
+    #   s3transfer
 cachetools==5.5.2
     # via google-auth
 certifi==2025.8.3
@@ -106,6 +112,8 @@ grpcio-status==1.74.0
     # via google-api-core
 h11==0.16.0
     # via httpcore
+hdbcli==2.25.29
+    # via -r requirements.in
 httpcore==1.0.9
     # via httpx
 httpx==0.28.1
@@ -127,6 +135,10 @@ jinja2==3.1.6
     # via banks
 jiter==0.10.0
     # via openai
+jmespath==1.0.1
+    # via
+    #   boto3
+    #   botocore
 joblib==1.5.1
     # via nltk
 jsonpatch==1.33
@@ -137,11 +149,15 @@ langchain==0.3.27
     # via
     #   -r requirements.in
     #   langchain-community
+langchain-aws==0.2.30
+    # via -r requirements.in
 langchain-community==0.3.27
     # via -r requirements.in
 langchain-core==0.3.72
     # via
+    #   -r requirements.in
     #   langchain
+    #   langchain-aws
     #   langchain-community
     #   langchain-google-genai
     #   langchain-openai
@@ -238,6 +254,7 @@ nltk==3.9.1
     #   llama-index-core
 numpy==2.3.2
     # via
+    #   langchain-aws
     #   langchain-community
     #   llama-index-core
     #   pandas
@@ -294,6 +311,7 @@ pydantic==2.10.6
     #   banks
     #   generative-ai-hub-sdk
     #   langchain
+    #   langchain-aws
     #   langchain-core
     #   langchain-google-genai
     #   langsmith
@@ -313,7 +331,9 @@ pymupdf==1.26.3
 pypdf==5.9.0
     # via llama-index-readers-file
 python-dateutil==2.9.0.post0
-    # via pandas
+    # via
+    #   botocore
+    #   pandas
 python-dotenv==1.1.1
     # via
     #   -r requirements.in
@@ -333,6 +353,7 @@ regex==2025.7.34
     #   tiktoken
 requests==2.32.4
     # via
+    #   -r requirements.in
     #   ai-api-client-sdk
     #   google-api-core
     #   langchain
@@ -345,6 +366,8 @@ requests-toolbelt==1.0.0
     # via langsmith
 rsa==4.9.1
     # via google-auth
+s3transfer==0.13.1
+    # via boto3
 six==1.17.0
     # via python-dateutil
 smmap==5.0.2
@@ -400,7 +423,9 @@ typing-inspection==0.4.1
 tzdata==2025.2
     # via pandas
 urllib3==2.5.0
-    # via requests
+    # via
+    #   botocore
+    #   requests
 wrapt==1.17.2
     # via
     #   deprecated
