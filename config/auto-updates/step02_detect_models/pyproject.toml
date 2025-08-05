@@ -7,7 +7,7 @@ packages = [{ include = "library" }]
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.13"
-requests = "^2.32.3"
+requests = "^2.32.4"
 python-dotenv = "^1.0.1"
 
 [build-system]
