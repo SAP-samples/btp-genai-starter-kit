@@ -1,0 +1,12 @@
+generative-ai-hub-sdk
+gitpython
+langchain
+langchain-community
+langchain-google-genai
+langchain-openai
+lark
+llama-index
+llama-index-embeddings-langchain
+openai
+pymupdf
+python-dotenv
