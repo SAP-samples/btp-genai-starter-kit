@@ -5545,6 +5545,7 @@ develop = true
 hdbcli = "^2.21.26"
 langchain = "^0.2.6"
 python-dotenv = "^1.0.1"
+urllib3 = "2.5.0"
 
 [package.source]
 type = "directory"
@@ -5761,4 +5762,4 @@ propcache = ">=0.2.1"
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.10,<3.13"
-content-hash = "e76be91d5f9bbb492c48a1b6b57de4d0f46388d1199a86a0496371167c370507"
+content-hash = "c1d30a1782854ca5f067b57da3797579998879b07c16d3db4d4993c105c63a5e"
