@@ -1,26 +1,26 @@
 [tool.poetry]
 name = "advanced-rag"
-version = "0.1.0"
+version = "0.1.1"
 description = "Demonstration of different Advanced RAG techniques"
 authors = ["SeriousSem"]
 readme = "README.md"
 packages = [{ include = "src" }, { include = "helpers" }]
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.13"
 generative-ai-hub-sdk = "^4.12.4"
-langchain = "^0.3.27"
-langchain-community = "^0.3.27"
-python-dotenv = "^1.1.1"
-utils = { path = "../utils", develop = true }
-langchain-google-genai = "^2.1.9"
-langchain-openai = "=0.3.28"
+gitpython = "^3.1.45"
+langchain = "0.3.27"
+langchain-community = "0.3.27"
+langchain-google-genai = "2.1.9"
+langchain-openai = "=0.3.27"
+lark = "^1.2.2"
 llama-index = "^0.12.42"
 llama-index-embeddings-langchain = "^0.3.0"
-gitpython = "^3.1.45"
-pymupdf = "^1.26.3"
 openai = "1.98.0"
-lark = "^1.2.2"
+pymupdf = "^1.26.3"
+python = ">=3.10,<3.13"
+python-dotenv = "^1.1.1"
+utils = { path = "../utils", develop = true }
 
 
 [build-system]
