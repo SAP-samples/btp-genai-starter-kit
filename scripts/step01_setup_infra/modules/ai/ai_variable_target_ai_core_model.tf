@@ -29,6 +29,7 @@ variable "target_ai_core_model" {
         "gemini-2.0-flash-lite",
         "gemini-2.5-flash",
         "gemini-2.5-pro",
+        "gemini-embedding",
         "gpt-35-turbo",
         "gpt-35-turbo-0125",
         "gpt-4",
