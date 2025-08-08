@@ -1,4 +1,4 @@
-FROM python:3.12.4-slim-bullseye
+FROM python:3.13.5-slim-bullseye
 
 ARG WORKSPACE_FOLDER_NAME=default
 ENV WORKSPACE_FOLDER_NAME=$WORKSPACE_FOLDER_NAME
