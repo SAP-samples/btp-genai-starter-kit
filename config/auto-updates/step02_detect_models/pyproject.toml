@@ -6,7 +6,7 @@ authors = ["romaniam"]
 packages = [{ include = "library" }]
 
 [tool.poetry.dependencies]
-python = ">=3.13"
+python = ">=3.13, <4.0"
 requests = "^2.32.4"
 urllib3 = "2.5.0"
 python-dotenv = "^1.0.1"

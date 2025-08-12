@@ -14,7 +14,7 @@ langchain-core = "^0.2.43"
 langchain-google-genai = "^1.0.7"
 langchain-openai = "^0.1.16"
 protobuf = "^4.25.8"
-python = ">=3.11,<3.13"
+python = ">=3.13,<4.0"
 pydantic = "^2.8.2"
 requests = "^2.32.4"
 utils = { path = "../utils", develop = true }

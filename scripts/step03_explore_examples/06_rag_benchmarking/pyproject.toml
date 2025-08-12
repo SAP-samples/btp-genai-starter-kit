@@ -7,7 +7,7 @@ readme = "README.md"
 packages = [{ include = "src" }, { include = "helpers" }]
 
 [tool.poetry.dependencies]
-python = ">=3.13"
+python = ">=3.13, <4.0"
 generative-ai-hub-sdk = "^1.11.1"
 langchain = "^0.2.12"
 langchain-community = "^0.2.11"
