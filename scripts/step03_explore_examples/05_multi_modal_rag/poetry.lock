@@ -5536,7 +5536,7 @@ name = "utils"
 version = "0.1.4"
 description = "Utils for exploring examples"
 optional = false
-python-versions = ">=3.10,<3.13"
+python-versions = ">=3.13"
 groups = ["main"]
 files = []
 develop = true
@@ -5761,5 +5761,5 @@ propcache = ">=0.2.1"
 
 [metadata]
 lock-version = "2.1"
-python-versions = ">=3.10,<3.13"
+python-versions = ">=3.13"
 content-hash = "c1d30a1782854ca5f067b57da3797579998879b07c16d3db4d4993c105c63a5e"

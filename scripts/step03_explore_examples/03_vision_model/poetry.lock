@@ -2524,7 +2524,7 @@ name = "utils"
 version = "0.1.4"
 description = "Utils for exploring examples"
 optional = false
-python-versions = ">=3.10,<3.13"
+python-versions = ">=3.13"
 groups = ["main"]
 files = []
 develop = true
