@@ -8,7 +8,7 @@ WORKDIR $HOME_FOLDER
 ENV TEMPFOLDER=/tmp/mytmp
 
 # Install necessary packages and tools
-RUN apt-get update && apt-get install -y xdg-utils curl jq unzip git
+RUN apt-get update && apt-get install -y xdg-utils curl jq unzip git gcc build-essential
 
 # Install Terraform CLI
 RUN TERRAFORM_VERSION=$(curl -s https://checkpoint-api.hashicorp.com/v1/check/terraform | jq -r .current_version | sed 's/^v//') \
