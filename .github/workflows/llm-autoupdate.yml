@@ -66,17 +66,6 @@ jobs:
           poetry install
           poetry run python main.py
 
-
-      - name: Terraform destroy
-        id: terraform_destroy
-        shell: bash
-        run: |
-          export BTP_USERNAME=${{ secrets.BTP_USERNAME }}
-          export BTP_PASSWORD=${{ secrets.BTP_PASSWORD }}
-
-          cd ${{ env.FOLDER_TF_SCRIPT }}
-          terraform destroy -var 'BTP_USERNAME=${{ env.BTP_USERNAME }}' -var 'BTP_PASSWORD=${{ env.BTP_PASSWORD }}' -var 'globalaccount=${{ env.GLOBALACCOUNT }}' -var 'subaccount_name=${{ env.SUBACCOUNTNAME }}' -var 'region=${{ env.REGION }}' -var 'admins=${{ env.ADMINS }}' -auto-approve -no-color
-
       - name: Create Pull Request
         id: cpr
         uses: peter-evans/create-pull-request@v7
@@ -98,3 +87,14 @@ jobs:
             LLM update
             automated pr
           draft: false
+          
+      - name: Terraform destroy
+        id: terraform_destroy
+        shell: bash
+        run: |
+          export BTP_USERNAME=${{ secrets.BTP_USERNAME }}
+          export BTP_PASSWORD=${{ secrets.BTP_PASSWORD }}
+
+          cd ${{ env.FOLDER_TF_SCRIPT }}
+          terraform destroy -var 'BTP_USERNAME=${{ env.BTP_USERNAME }}' -var 'BTP_PASSWORD=${{ env.BTP_PASSWORD }}' -var 'globalaccount=${{ env.GLOBALACCOUNT }}' -var 'subaccount_name=${{ env.SUBACCOUNTNAME }}' -var 'region=${{ env.REGION }}' -var 'admins=${{ env.ADMINS }}' -auto-approve -no-color
+
