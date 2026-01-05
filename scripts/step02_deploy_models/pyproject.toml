@@ -10,6 +10,7 @@ packages = [{ include = "library" }]
 python = ">=3.13, <4.0"
 requests = "^2.32.4"
 python-dotenv = "^1.1.1"
+urllib3 = ">=2.6.0"
 
 [build-system]
 requires = ["poetry-core"]
