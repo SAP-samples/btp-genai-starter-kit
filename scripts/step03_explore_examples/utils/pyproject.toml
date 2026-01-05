@@ -8,9 +8,9 @@ readme = "README.md"
 [tool.poetry.dependencies]
 python = ">=3.13, <4.0"
 hdbcli = "^2.21.26"
-langchain = "^0.2.6"
+langchain = ">=1.2.0"
 python-dotenv = "^1.0.1"
-urllib3 = "2.5.0"
+urllib3 = "2.6.0"
 
 
 [build-system]
